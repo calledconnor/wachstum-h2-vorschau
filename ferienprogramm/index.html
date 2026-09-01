@@ -140,13 +140,18 @@
     font-weight:600;
     font-size:.94rem;
     letter-spacing:-.005em;
-    transition:transform .3s var(--ease), background .2s ease, border-color .2s ease, color .2s ease;
+    transition:transform .25s var(--ease), background .2s ease, border-color .2s ease, color .2s ease, box-shadow .3s ease;
   }
   .btn:focus-visible{ outline:2px solid var(--copper-light); outline-offset:3px; }
   .btn .icon{ transition:transform .25s var(--ease); }
   .btn:hover .icon{ transform:translate(3px,-3px); }
-  .btn-primary{ background:var(--copper); color:var(--paper); }
-  .btn-primary:hover{ background:var(--copper-dim); }
+  @media (hover:hover) and (pointer:fine){ .btn:hover{ transform:translateY(-1px); } }
+  .btn-primary{ background:var(--copper); color:var(--paper); box-shadow:0 4px 16px rgba(232,99,31,.25); }
+  .btn-primary:hover{ background:var(--copper-dim); box-shadow:0 6px 24px rgba(232,99,31,.4); }
+  /* Im Hero deutlich wärmerer Glow statt eines Farbverlaufs — der Blick soll
+     zuerst hier landen. */
+  .hero .btn-primary{ box-shadow:0 8px 28px rgba(232,99,31,.4), 0 0 48px rgba(232,99,31,.18); }
+  .hero .btn-primary:hover{ box-shadow:0 10px 36px rgba(232,99,31,.55), 0 0 64px rgba(232,99,31,.3); }
   .btn-ghost{ background:transparent; border-color:var(--line-dark); color:var(--paper); }
   .btn-ghost:hover{ border-color:var(--paper); }
   .btn-outline{ background:transparent; border-color:var(--ink); color:var(--ink); }
@@ -267,14 +272,34 @@
   .audience-btn .icon{ color:var(--copper-light); }
   .audience-btn .tag{ font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,245,244,.5); display:block; margin-bottom:2px; }
 
-  /* ---------- Trust-Zeile: ein echter, geprüfter Fakt statt eines Countdowns
-     ohne echten Anmeldeschluss-Anker. ---------- */
-  .hero-trust{
-    display:flex; align-items:center; gap:8px;
-    font-size:.88rem;
-    color:rgba(245,245,244,.75);
+  /* ---------- Schwebendes Glas-Badge: ein echter, geprüfter Fakt statt eines
+     Countdowns ohne echten Anmeldeschluss-Anker. Frosted-Glass-Effekt in den
+     Markenfarben statt Neon — backdrop-filter statt Farbverlauf. ---------- */
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:8px; width:fit-content;
+    margin-top:var(--s2);
+    padding:10px 16px;
+    background:rgba(20,20,20,.5);
+    backdrop-filter:blur(14px) saturate(150%);
+    -webkit-backdrop-filter:blur(14px) saturate(150%);
+    border:1px solid rgba(245,245,244,.16);
+    border-radius:999px;
+    font-size:.82rem;
+    color:rgba(245,245,244,.85);
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
   }
-  .hero-trust .icon{ color:var(--copper-light); flex:none; }
+  .hero-badge .icon{ color:var(--copper-light); flex:none; }
+  .hero-badge strong{ color:var(--paper); font-weight:700; }
+
+  /* ---------- Sekundärer Hero-CTA als schlichter Textlink, damit der Blick
+     eindeutig beim primären Button bleibt. ---------- */
+  .hero-cta-secondary{
+    display:inline-flex; align-items:center;
+    font-size:.9rem; font-weight:600; color:rgba(245,245,244,.7);
+    text-decoration:underline; text-underline-offset:3px;
+    transition:color .2s ease;
+  }
+  .hero-cta-secondary:hover{ color:var(--paper); }
 
   /* ============================================================
      SECTION SCAFFOLD — großzügiger Whitespace
@@ -394,13 +419,14 @@
     transition:transform .2s var(--ease), box-shadow .2s var(--ease);
   }
   @media (hover:hover) and (pointer:fine){
-    .offer-card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(20,20,20,.14); }
+    .offer-card:hover{ transform:translateY(-4px) scale(1.012); box-shadow:0 16px 32px rgba(20,20,20,.14); }
+    .offer-card:hover .offer-card-photo img{ transform:scale(1.04); }
   }
 
   /* ---- Slot 1: Bild, immer 16:9 — Karten ohne Foto bekommen ein Fallback-Panel
      im Saison-Farbverlauf mit Angebots-Icon, die Bildhöhe fehlt nie. ---- */
   .offer-card-photo{ aspect-ratio:16/9; overflow:hidden; flex:none; background:var(--paper-soft); }
-  .offer-card-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .offer-card-photo img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease); }
   .offer-card-fallback{
     aspect-ratio:16/9; flex:none;
     display:grid; place-items:center;
@@ -408,7 +434,24 @@
   }
   .offer-card-fallback .icon{ width:2.2rem; height:2.2rem; color:#fff; opacity:.92; }
 
-  .offer-card-body{ padding:var(--s5); display:flex; flex-direction:column; gap:var(--s3); flex:1 1 auto; }
+  .offer-card-body{ position:relative; padding:var(--s5); display:flex; flex-direction:column; gap:var(--s3); flex:1 1 auto; overflow:hidden; }
+  /* ---- Line-Art-Wasserzeichen: dasselbe dünne Icon-Set, das schon für die
+     Meta-Zeilen genutzt wird, hier großformatig und sehr dezent im Hintergrund
+     — verleiht jeder Karte Charakter, ohne die Lesbarkeit zu stören. ---- */
+  .offer-card-body::before{
+    content:""; position:absolute; top:-18px; right:-18px;
+    width:96px; height:96px;
+    background-color:var(--ink);
+    opacity:.045;
+    -webkit-mask-image:var(--card-icon, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='9' cy='8' r='3.2' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Cpath d='M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Ccircle cx='17.5' cy='9' r='2.4' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Cpath d='M15.5 20c.2-2.9 1.9-4.9 4-5.6' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E"));
+    mask-image:var(--card-icon, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='9' cy='8' r='3.2' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Cpath d='M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Ccircle cx='17.5' cy='9' r='2.4' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Cpath d='M15.5 20c.2-2.9 1.9-4.9 4-5.6' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E"));
+    -webkit-mask-size:contain; mask-size:contain;
+    -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+    pointer-events:none;
+  }
+  .offer-grid.group--erwachsene .offer-card-body{
+    --card-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
 
   /* ---- Slot 2: Zielgruppen-Chip + Preis, eine Zeile ---- */
   .offer-card-toprow{ display:flex; align-items:center; justify-content:space-between; gap:var(--s3); }
@@ -845,15 +888,19 @@
     <img src="fotos/kind-thumbs-up.webp" alt="" loading="lazy">
   </div>
   <div class="wrap hero-inner">
-    <span class="eyebrow">Wachstum² Power Kids · WH² Akademie · Büdelsdorf</span>
-    <h1>Ferienprogramm für Kinder, Jugendliche <span class="accent">&amp; Erwachsene</span></h1>
-    <p class="slogan">Kampfkunst, Selbstbehauptung und Bewegung in kleinen Gruppen bei erfahrenen Trainern. Von den Herbstferien 2026 bis zu den Sommerferien 2027.</p>
-    <div class="hero-ctas">
-      <a href="#ferienauswahl" class="btn btn-primary" data-track="cta_hero_main">Ferienprogramm auswählen <svg class="icon"><use href="#i-arrow"/></svg></a>
-      <a href="#anmeldung" class="btn btn-ghost">Direkt zur Anmeldung</a>
+    <span class="eyebrow">WH² Akademie · Büdelsdorf</span>
+    <h1>Ferienprogramm <span class="accent">2026/27</span></h1>
+    <p class="slogan">Kampfkunst &amp; Bewegung für die ganze Familie.</p>
+
+    <div class="hero-badge reveal">
+      <svg class="icon"><use href="#i-check"/></svg>
+      <span><strong>Ringen &amp; Raufen</strong> schon terminiert · 19. &amp; 21.10.</span>
     </div>
 
-    <p class="hero-trust"><svg class="icon"><use href="#i-check"/></svg>Schon terminiert: Ringen &amp; Raufen, Mo 19. &amp; Mi 21.10.2026 · WH² Akademie Büdelsdorf</p>
+    <div class="hero-ctas">
+      <a href="#ferienauswahl" class="btn btn-primary" data-track="cta_hero_main">Ferienprogramm auswählen <svg class="icon"><use href="#i-arrow"/></svg></a>
+      <a href="#anmeldung" class="hero-cta-secondary">Direkt zur Anmeldung</a>
+    </div>
 
     <div class="audience-pick">
       <span class="label">Was suchst du?</span>
