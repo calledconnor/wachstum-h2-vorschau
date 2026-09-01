@@ -533,6 +533,9 @@
   .week-empty .icon, .season-placeholder-note .icon{ color:var(--season-accent, var(--copper)); flex:none; }
 
   .week-group{ display:grid; gap:var(--s3); }
+  /* Wenn kein Zielgruppen-Subheader dazwischen sitzt (nur eine Zielgruppe in der Woche
+     vertreten), bekommt das Raster trotzdem etwas Luft zum Wochen-Header darüber. */
+  .week-header + .offer-grid{ margin-top:var(--s3); }
 
   /* ---- Ferienwochen-Header, immer dreizeilig: Nummer / Datum / KW ---- */
   .week-header{
@@ -914,10 +917,8 @@
                 <span class="week-kw">KW 43</span>
               </div>
 
-              <div class="audience-subheader audience--kinder" id="kinder">
-                <h3>Kinder &amp; Jugendliche</h3>
-                <span class="chip">1 Angebot</span>
-              </div>
+              <!-- Nur eine Zielgruppe in dieser Woche vertreten — kein Subheader nötig,
+                   der würde nur eine Trennung suggerieren, die es hier gar nicht gibt. -->
               <div class="offer-grid group--kinder">
 
                 <article class="offer-card reveal" id="angebot-ringen" data-audience="kinder">
@@ -951,7 +952,7 @@
                 <span class="week-dates">Ferienwoche wird noch mit Nils abgestimmt</span>
               </div>
 
-              <div class="audience-subheader audience--kinder">
+              <div class="audience-subheader audience--kinder" id="kinder">
                 <h3>Kinder &amp; Jugendliche</h3>
                 <span class="chip">5 Angebote</span>
               </div>
