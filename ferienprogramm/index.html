@@ -366,8 +366,9 @@
   .price-tag.tbd{ color:#A9A69F; font-style:italic; font-weight:500; }
 
   .offer-desc{ color:var(--ink-soft); font-size:.92rem; line-height:1.6; }
-  .offer-trainer{ display:flex; align-items:center; gap:6px; font-size:.8rem; color:var(--ink-soft); }
+  .offer-trainer{ display:flex; align-items:center; gap:8px; font-size:.8rem; color:var(--ink-soft); }
   .offer-trainer .icon{ color:var(--copper-dim); }
+  .offer-trainer-avatar{ width:24px; height:24px; border-radius:999px; object-fit:cover; flex:none; }
   .offer-meta{ display:flex; flex-wrap:wrap; gap:var(--s1) var(--s3); font-size:.78rem; color:var(--ink-soft); padding-top:var(--s1); border-top:1px solid var(--line-2); margin-top:2px; }
   .offer-meta span{ display:inline-flex; align-items:center; gap:5px; }
   .offer-meta .icon{ color:#B5B3AE; }
@@ -420,6 +421,17 @@
     padding-bottom:var(--s1); border-bottom:1px solid var(--line);
   }
   .week-label .kw{ color:#B5B3AE; font-weight:500; text-transform:none; letter-spacing:0; }
+
+  /* ---- Einzelnes Top-Angebot mit echten Daten: Foto und Inhalt nebeneinander,
+     volle Breite statt eines Rasters mit leeren Restzellen ---- */
+  .offer-spotlight{
+    display:grid; grid-template-columns:1fr 1fr;
+    border:1px solid var(--line); background:var(--paper);
+  }
+  @media (max-width:720px){ .offer-spotlight{ grid-template-columns:1fr; } }
+  .offer-spotlight-photo{ overflow:hidden; min-height:280px; }
+  .offer-spotlight-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .offer-spotlight-body{ padding:clamp(var(--s4),4vw,var(--s5)); display:grid; gap:var(--s2); align-content:start; min-width:0; }
 
   /* ---- Angebots-Foto: echtes Foto, unbearbeitet, für schnelle Wiedererkennung ---- */
   .offer-photo{ margin:calc(var(--s4) * -1) calc(var(--s4) * -1) 0; overflow:hidden; }
@@ -799,10 +811,10 @@
 
             <div class="week-group">
               <div class="week-label">2. Ferienwoche · Mo 19.10. – Fr 23.10.2026 <span class="kw">· KW 43</span></div>
-              <div class="offer-grid">
 
-                <article class="offer-card featured reveal" id="angebot-ringen" data-audience="kinder">
-                  <div class="offer-photo"><img src="fotos/ringen-raufen.jpg" alt="Trainer und Kinder beim Ringen &amp; Raufen auf der Matte, echtes WH2-Training"></div>
+              <article class="offer-spotlight reveal" id="angebot-ringen" data-audience="kinder">
+                <div class="offer-spotlight-photo"><img src="fotos/ringen-raufen.jpg" alt="Trainer und Kinder beim Ringen &amp; Raufen auf der Matte, echtes WH2-Training"></div>
+                <div class="offer-spotlight-body">
                   <div class="offer-top">
                     <h3>Ringen &amp; Raufen</h3>
                     <span class="price-tag">15–25 €<span class="unit">/Kind</span></span>
@@ -818,9 +830,8 @@
                     <a href="#anmeldung" class="offer-cta" data-track="offer_ringen" data-offer="Ringen & Raufen">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
                     <a class="offer-mailto" href="mailto:info@wachstum-h2.de" data-mailto-offer="Ringen & Raufen"><svg class="icon"><use href="#i-pin"/></svg>Per E-Mail anfragen</a>
                   </div>
-                </article>
-
-              </div>
+                </div>
+              </article>
             </div>
 
             <div class="week-group">
@@ -829,15 +840,14 @@
               <div class="group-label reveal"><h3>Für Kinder &amp; Jugendliche</h3><span class="count">5 Angebote</span></div>
               <div class="offer-grid">
 
-                <article class="offer-card featured reveal" id="angebot-kiyo" data-audience="kinder">
-                  <div class="offer-photo"><img src="fotos/kiyo-kindertanz.jpg" alt="Tina Witt, Trainerin für Kindertanz und Kinderyoga bei Wachstum²"></div>
+                <article class="offer-card reveal" id="angebot-kiyo" data-audience="kinder">
                   <div class="offer-top">
                     <h3>KiYo: Kindertanz &amp; Yoga</h3>
                     <span class="price-tag">35 €<span class="unit">/Monat</span></span>
                   </div>
                   <span class="offer-zielgruppe"><svg class="icon"><use href="#i-users"/></svg>Kinder &amp; Jugendliche</span>
                   <p class="offer-desc">Tanzen, dehnen, zur Ruhe kommen: kreative Bewegung und Yoga-Elemente für Körpergefühl, Konzentration und Ausgeglichenheit, behutsam angeleitet und ohne Leistungsdruck.</p>
-                  <div class="offer-trainer"><svg class="icon"><use href="#i-users"/></svg> Leitung: Tina Witt</div>
+                  <div class="offer-trainer"><img class="offer-trainer-avatar" src="fotos/kiyo-kindertanz.jpg" alt="Tina Witt"> Leitung: Tina Witt</div>
                   <div class="offer-meta">
                     <span><svg class="icon"><use href="#i-clock"/></svg>1 Std.</span>
                     <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Termin: wird ergänzt</span>
@@ -849,7 +859,7 @@
                   </div>
                 </article>
 
-                <article class="offer-card reveal" id="angebot-powerkids" data-audience="kinder">
+                <article class="offer-card featured reveal" id="angebot-powerkids" data-audience="kinder">
                   <div class="offer-photo"><img src="fotos/kindertraining.png" alt="Kinder beim WH2-Training: Selbstbehauptung, Bewegung und Teamgeist"></div>
                   <div class="offer-top">
                     <h3>Power Kids</h3>
@@ -1332,7 +1342,7 @@
   /* ---------- Audience-Filter ---------- (wirkt direkt auf jede Karte,
      unabhängig davon, in welcher Saison/Woche sie steckt) */
   var chips = document.querySelectorAll('.toggle-chip');
-  var audienceCards = document.querySelectorAll('.offer-card[data-audience]');
+  var audienceCards = document.querySelectorAll('.offer-card[data-audience], .offer-spotlight[data-audience]');
   chips.forEach(function(chip){
     chip.addEventListener('click', function(){
       chips.forEach(function(c){ c.setAttribute('aria-pressed','false'); });
@@ -1438,7 +1448,7 @@
   /* ---------- Tracking: Klick auf ein Angebot (PDF Punkt 11.4) ----------
      Separat vom Klick auf "Platz sichern" (11.5) — die Karte selbst gilt
      als "angesehen/angeklickt", der CTA-Klick wird oben schon getrackt. */
-  document.querySelectorAll('.offer-card[id]').forEach(function(card){
+  document.querySelectorAll('.offer-card[id], .offer-spotlight[id]').forEach(function(card){
     card.addEventListener('click', function(e){
       if (e.target.closest('.offer-cta')) return; // separat getrackt
       trackEvent('angebot_angesehen', {offer: card.id});
