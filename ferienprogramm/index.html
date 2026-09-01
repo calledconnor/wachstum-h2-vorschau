@@ -322,7 +322,7 @@
   .group-label .count{ font-family:var(--font-mono); font-size:.74rem; color:var(--ink-soft); }
   .group-label::after{ content:""; flex:1; height:1px; background:var(--line); }
 
-  .offer-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .offer-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s3); }
   @media (max-width:900px){ .offer-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:600px){ .offer-grid{ grid-template-columns:1fr; } }
   .offer-grid > *{ min-width:0; }
@@ -330,6 +330,7 @@
   .offer-card{
     position:relative;
     background:var(--paper);
+    border:1px solid var(--line);
     padding:var(--s4);
     display:grid; grid-template-columns:minmax(0,1fr); gap:var(--s2);
     align-content:start;
@@ -435,8 +436,12 @@
 
   /* ---- Angebots-Foto: echtes Foto, unbearbeitet, für schnelle Wiedererkennung ---- */
   .offer-photo{ margin:calc(var(--s4) * -1) calc(var(--s4) * -1) 0; overflow:hidden; }
-  .offer-photo img{ width:100%; height:150px; object-fit:cover; }
-  .offer-card.featured .offer-photo img{ height:220px; }
+  .offer-photo img{ width:100%; height:150px; object-fit:cover; object-position:center 25%; }
+  /* Featured-Karten sind bei breitem Viewport sehr breit — feste Pixelhöhe würde ein
+     Hochkant-Foto (Portrait-Quelle) dann viel zu aggressiv beschneiden. aspect-ratio hält
+     den Ausschnitt proportional gleich streng, egal wie breit die Karte gerade ist. */
+  .offer-card.featured .offer-photo{ aspect-ratio:4/3; }
+  .offer-card.featured .offer-photo img{ height:100%; object-position:center 20%; }
   .offer-card.wide .offer-photo img{ height:130px; }
 
   .offer-zielgruppe{
