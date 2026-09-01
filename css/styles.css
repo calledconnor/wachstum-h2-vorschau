@@ -1,0 +1,495 @@
+/* ============================================================
+   DESIGN TOKENS — Wachstum² CI (identisch zur Ferienprogramm-Seite)
+   8pt-Raster, Hairlines statt Schatten, scharfe Kanten statt Bento.
+   ============================================================ */
+:root{
+  --ink:        #141414;
+  --ink-soft:   #1F1F1F;
+  --ink-deep:   #0A0A0A;
+  --paper:      #F5F5F4;
+  --paper-soft: #EDEDEB;
+  --copper:     #E8631F;
+  --copper-light:#F0854A;
+  --copper-dim: #B84E17;
+
+  --line:      rgba(20,20,20,.12);
+  --line-2:    rgba(20,20,20,.08);
+  --line-dark: rgba(245,245,244,.16);
+  --line-dark-2: rgba(245,245,244,.1);
+
+  --font-display:'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-body:'Work Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:96px; --s8:128px; --s9:160px;
+
+  --radius:2px;
+  --max:1200px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;} }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:15.5px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img,svg{display:block; max-width:100%;}
+a{color:inherit; text-decoration:none;}
+button{font:inherit; cursor:pointer; background:none; border:0;}
+
+h1,h2,h3,h4{
+  font-weight:700;
+  line-height:1.05;
+  text-wrap:balance;
+  margin:0;
+  letter-spacing:-.01em;
+}
+h1,h2{ font-family:var(--font-display); letter-spacing:-.02em; }
+h3,h4{ font-family:var(--font-body); font-weight:700; letter-spacing:-.01em; line-height:1.2; }
+p{margin:0;}
+
+.wrap{max-width:var(--max); margin-inline:auto; padding-inline:var(--s4);}
+@media (max-width:640px){ .wrap{padding-inline:var(--s3);} }
+
+.icon{ width:1em; height:1em; stroke:currentColor; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; flex:none; vertical-align:-.15em; }
+.icon-lg{ width:1.4em; height:1.4em; }
+
+.eyebrow{
+  display:flex; align-items:center; gap:var(--s1);
+  font-family:var(--font-body);
+  font-size:.7rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--copper-dim);
+}
+.eyebrow::before{ content:""; width:20px; height:1px; background:var(--copper); flex:none; }
+.on-dark .eyebrow{ color:var(--copper-light); }
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.6em;
+  padding:.9em 1.6em;
+  border-radius:999px;
+  border:1px solid transparent;
+  font-weight:600;
+  font-size:.94rem;
+  letter-spacing:-.005em;
+  transition:transform .3s var(--ease), background .2s ease, border-color .2s ease, color .2s ease;
+}
+.btn:focus-visible{ outline:2px solid var(--copper-light); outline-offset:3px; }
+.btn .icon{ transition:transform .25s var(--ease); }
+.btn:hover .icon{ transform:translate(3px,-3px); }
+.btn-primary{ background:var(--copper); color:var(--paper); }
+.btn-primary:hover{ background:var(--copper-dim); }
+.btn-ghost{ background:transparent; border-color:var(--line-dark); color:var(--paper); }
+.btn-ghost:hover{ border-color:var(--paper); }
+.btn-outline{ background:transparent; border-color:var(--ink); color:var(--ink); }
+.btn-outline:hover{ background:var(--ink); color:var(--paper); }
+.btn-block{ width:100%; justify-content:center; }
+.btn-sm{ padding:.6em 1.1em; font-size:.82rem; }
+
+/* ============================================================
+   HEADER / NAVIGATION — auf jeder Seite gleich
+   ============================================================ */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(245,245,244,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.site-header .wrap{ display:flex; align-items:center; justify-content:space-between; gap:var(--s3); height:76px; }
+.site-header .brand{ flex:none; }
+.site-header .brand img{ height:34px; width:auto; max-width:none; }
+.site-nav{ display:flex; align-items:center; gap:var(--s4); }
+.site-nav > ul{ display:flex; align-items:center; gap:var(--s3); list-style:none; margin:0; padding:0; }
+.site-nav > ul > li{ position:relative; }
+.site-nav a{ font-size:.88rem; font-weight:600; color:var(--ink-soft); transition:color .2s ease; white-space:nowrap; }
+.site-nav a:hover{ color:var(--copper); }
+.nav-pill{
+  display:inline-flex !important; align-items:center; gap:6px;
+  background:var(--copper); color:var(--paper) !important;
+  padding:.4em .85em; border-radius:999px; font-size:.78rem !important;
+  transition:background .2s ease, transform .2s ease;
+}
+.nav-pill:hover{ background:var(--copper-dim); color:var(--paper) !important; transform:translateY(-1px); }
+.nav-pill .dot{ width:6px; height:6px; border-radius:50%; background:var(--paper); flex:none; animation:pillPulse 1.8s ease-in-out infinite; }
+@keyframes pillPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+.mobile-menu .nav-pill{ background:var(--copper); border-radius:999px; padding:.7em 1.2em !important; font-size:1rem !important; margin:var(--s2) 0; justify-content:center; }
+.mobile-menu > .wrap > ul > li:has(.nav-pill){ border-top:0; }
+.site-nav .has-sub > a{ display:flex; align-items:center; gap:5px; }
+.site-nav .has-sub > a .icon{ width:.8em; height:.8em; transition:transform .2s ease; }
+.site-nav .has-sub:hover > a .icon{ transform:rotate(180deg); }
+
+.sub-menu{
+  position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(6px);
+  display:grid; grid-template-columns:1fr 1fr; gap:var(--s4);
+  background:#fff; border:1px solid var(--line); box-shadow:0 24px 48px -20px rgba(20,20,20,.18);
+  padding:var(--s4); width:560px;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease, visibility .2s;
+}
+.site-nav .has-sub:hover .sub-menu{ opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0); }
+.sub-menu-group h4{ font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin-bottom:var(--s2); font-family:var(--font-body); font-weight:700; }
+.sub-menu-group ul{ list-style:none; margin:0; padding:0; display:grid; gap:var(--s1); }
+.sub-menu-group a{ display:block; padding:6px 0; font-weight:500; color:var(--ink); }
+.sub-menu-group a:hover{ color:var(--copper); }
+
+.header-cta{ display:flex; align-items:center; gap:var(--s3); }
+.header-cta .btn{ font-size:.82rem; padding:.7em 1.3em; }
+
+.nav-toggle{ display:none; width:40px; height:40px; align-items:center; justify-content:center; }
+.nav-toggle .icon{ width:1.4em; height:1.4em; }
+
+@media (max-width:1300px){
+  .header-cta .btn-outline{ display:none; }
+}
+@media (max-width:1150px){
+  .site-nav{ display:none; }
+  .nav-toggle{ display:flex; }
+  .header-cta{ display:none; }
+}
+
+/* Mobile-Menü */
+.mobile-menu{
+  position:fixed; inset:0; z-index:60; background:var(--ink-deep); color:var(--paper);
+  width:100%; max-width:100vw;
+  padding:var(--s4); transform:translateX(100%); transition:transform .35s var(--ease);
+  overflow-y:auto; overflow-x:hidden;
+}
+.mobile-menu.open{ transform:translateX(0); }
+.mobile-menu-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--s5); }
+.mobile-menu-head img{ height:30px; }
+.mobile-menu ul{ list-style:none; margin:0; padding:0; display:grid; gap:0; }
+.mobile-menu > .wrap > ul > li{ border-top:1px solid var(--line-dark); }
+.mobile-menu > .wrap > ul > li:last-child{ border-bottom:1px solid var(--line-dark); }
+.mobile-menu > .wrap > ul > li > a, .mobile-menu-cat > summary{ padding:var(--s3) 0; font-size:1.1rem; font-weight:700; font-family:var(--font-display); display:flex; align-items:center; justify-content:space-between; }
+.mobile-menu-cat[open] summary .icon{ transform:rotate(45deg); }
+.mobile-menu-cat summary{ cursor:pointer; list-style:none; }
+.mobile-menu-cat summary::-webkit-details-marker{ display:none; }
+.mobile-menu-cat ul{ padding-bottom:var(--s2); }
+.mobile-menu-cat li a{ padding:var(--s1) 0; font-size:.94rem; font-weight:500; color:rgba(245,245,244,.7); }
+.mobile-menu .btn{ margin-top:var(--s4); }
+
+/* ============================================================
+   SECTION SCAFFOLD
+   ============================================================ */
+section{ padding:var(--s8) 0; }
+@media (max-width:640px){ section{ padding:var(--s6) 0; } }
+.section-head{ display:grid; gap:var(--s2); max-width:640px; margin-bottom:var(--s5); }
+.section-head h2{ font-size:clamp(1.7rem,6.5vw,3.1rem); letter-spacing:-.02em; }
+.section-head p{ color:var(--ink-soft); font-size:1rem; max-width:52ch; }
+.section-head.on-dark p{ color:rgba(245,245,244,.62); }
+.divider{ height:1px; background:var(--line); border:0; margin:0; }
+.on-dark{ color:var(--paper); }
+
+/* ---------- Reveal (identisch zur Ferienprogramm-Seite, pro Element gestaffelt) ---------- */
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s var(--ease), transform .6s var(--ease); }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ============================================================
+   HERO — für Startseite und Unterseiten
+   ============================================================ */
+.hero{
+  position:relative;
+  background:var(--ink-deep);
+  color:var(--paper);
+  padding:clamp(72px,10vw,120px) 0;
+  overflow:clip;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0; z-index:1;
+  background:radial-gradient(1000px 500px at 85% -10%, rgba(232,99,31,.18), transparent 65%);
+}
+.hero-inner{ position:relative; z-index:2; display:grid; gap:var(--s3); max-width:700px; }
+.hero h1{ font-size:clamp(2.4rem, 6vw, 4rem); letter-spacing:-.03em; }
+.hero h1 .accent{ display:block; color:var(--copper-light); font-weight:700; }
+.hero .slogan{
+  font-size:clamp(1rem,1.6vw,1.15rem);
+  color:rgba(245,245,244,.68);
+  max-width:52ch; line-height:1.6;
+  padding-left:var(--s3); border-left:1px solid var(--line-dark);
+}
+.hero-ctas{ display:flex; flex-wrap:wrap; gap:var(--s2); margin-top:var(--s1); }
+
+/* Kompakter Hero für Unterseiten (Leistungen) */
+.hero-sub{ padding:clamp(56px,8vw,88px) 0; }
+.hero-sub .hero-inner{ max-width:760px; gap:var(--s2); }
+.hero-sub h1{ font-size:clamp(2rem,5vw,3.1rem); }
+.breadcrumb{ display:flex; align-items:center; gap:8px; font-size:.8rem; color:rgba(245,245,244,.5); margin-bottom:var(--s1); }
+.breadcrumb a{ color:rgba(245,245,244,.7); }
+.breadcrumb a:hover{ color:var(--copper-light); }
+
+/* ============================================================
+   FOTO-LOOP — wiederverwendbare Duoton-Bildschicht (gleiche Optik wie
+   der Hero der Ferienprogramm-Seite), für Leistungsseiten-Heros,
+   das Ferienprogramm-Banner und Foto-Kacheln auf der Startseite.
+   ============================================================ */
+@keyframes photoLoop{
+  0%   { opacity:1; transform:scale(1.02); }
+  25%  { opacity:1; }
+  31%  { opacity:0; }
+  100% { opacity:0; transform:scale(1.12); }
+}
+@keyframes kenBurns{ 0%{ transform:scale(1); } 100%{ transform:scale(1.08); } }
+
+.photo-loop{ position:absolute; inset:0; z-index:0; }
+.photo-loop img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  opacity:0; transform:scale(1.02);
+  filter:grayscale(1) contrast(1.15) brightness(.8);
+  animation:photoLoop 32s infinite;
+}
+.photo-loop img:nth-child(1){ animation-delay:0s; }
+.photo-loop img:nth-child(2){ animation-delay:-8s; }
+.photo-loop img:nth-child(3){ animation-delay:-16s; }
+.photo-loop img:nth-child(4){ animation-delay:-24s; }
+.photo-loop.two img{ animation-duration:16s; }
+.photo-loop.two img:nth-child(2){ animation-delay:-8s; }
+.photo-loop.single img{ opacity:1; animation:kenBurns 26s ease-in-out infinite alternate; filter:grayscale(1) contrast(1.15) brightness(.78); }
+.photo-loop::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(165deg, var(--ink-deep) 0%, var(--copper-dim) 100%);
+  mix-blend-mode:color;
+}
+.photo-loop::before{
+  content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg, rgba(10,10,10,.35) 0%, rgba(10,10,10,.5) 55%, var(--ink-deep) 100%);
+}
+@media (prefers-reduced-motion:reduce){
+  .photo-loop img{ animation:none !important; opacity:0; transform:none; }
+  .photo-loop img:first-child{ opacity:1; }
+  .photo-loop.single img{ opacity:1; }
+}
+
+/* Statisches Duoton-Foto (Inhaltsbilder, Karten-Thumbnails) */
+.photo-frame{ position:relative; overflow:hidden; background:var(--ink-deep); }
+.photo-frame img{
+  display:block; width:100%; height:100%; object-fit:cover;
+  filter:grayscale(1) contrast(1.1) brightness(.92);
+  transition:transform .7s var(--ease);
+}
+.photo-frame::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(165deg, var(--ink-deep) 0%, var(--copper-dim) 100%);
+  mix-blend-mode:color; opacity:.6;
+}
+.content-photo{ aspect-ratio:4/3; border:1px solid var(--line); }
+a:hover .photo-frame img, .service-card:hover .photo-frame img{ transform:scale(1.07); }
+
+/* ============================================================
+   FERIENPROGRAMM-BANNER — eigener Funnel, prominent auf der Startseite
+   und im Footer verlinkt, bewusst anders gestaltet als die
+   Leistungsseiten-Kacheln, damit klar ist: das ist eine separate Seite.
+   ============================================================ */
+.ferien-banner{
+  position:relative; overflow:clip;
+  background:var(--ink-deep); color:var(--paper);
+  border:1px solid var(--line);
+}
+.ferien-banner .photo-loop{ z-index:0; }
+.ferien-banner-inner{
+  position:relative; z-index:2;
+  padding:var(--s7) var(--s4);
+  display:grid; gap:var(--s3); max-width:600px;
+}
+.ferien-banner-tag{
+  display:inline-flex; align-items:center; gap:8px; align-self:start;
+  border:1px solid var(--line-dark); border-radius:999px; padding:.45em 1.1em;
+  font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(245,245,244,.8);
+}
+.ferien-banner-tag::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--copper-light); flex:none; }
+.ferien-banner h2{ font-size:clamp(1.8rem,4.6vw,2.7rem); color:var(--paper); }
+.ferien-banner p.lead{ color:rgba(245,245,244,.72); max-width:46ch; font-size:1rem; }
+.ferien-banner-ctas{ display:flex; flex-wrap:wrap; gap:var(--s2); margin-top:var(--s1); align-items:center; }
+.ferien-banner-note{ font-size:.78rem; color:rgba(245,245,244,.5); }
+
+/* ============================================================
+   SERVICE-KACHELN — Foto-Karten für die Startseiten-Navigation
+   (ersetzt reine Text-Links, damit Unterseiten besser sichtbar sind)
+   ============================================================ */
+.service-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+.service-cards > *{ min-width:0; }
+@media (max-width:900px){ .service-cards{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .service-cards{ grid-template-columns:1fr; } }
+.service-card{ background:var(--paper); display:grid; grid-template-rows:auto 1fr; transition:background .2s ease; }
+.service-card:hover{ background:#fff; }
+.service-card .photo-frame{ aspect-ratio:4/3; }
+.service-card-body{ padding:var(--s3); display:grid; gap:6px; align-content:start; }
+.service-card h4{ font-size:.96rem; display:flex; align-items:center; justify-content:space-between; gap:var(--s2); }
+.service-card h4 .icon{ opacity:.4; transition:transform .2s ease, opacity .2s ease; flex:none; }
+.service-card:hover h4 .icon{ opacity:1; transform:translate(3px,-3px); }
+.service-card p{ font-size:.82rem; color:var(--ink-soft); }
+.audience-toggle-label{ font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--copper-dim); font-weight:700; margin-bottom:var(--s2); display:block; }
+
+/* ============================================================
+   CONTENT BLOCKS — für Fließtext auf Leistungsseiten
+   ============================================================ */
+.prose{ display:grid; gap:var(--s3); max-width:70ch; font-size:1rem; color:var(--ink-soft); line-height:1.75; }
+.prose strong{ color:var(--ink); font-weight:700; }
+.prose ul{ list-style:none; margin:0; padding:0; display:grid; gap:var(--s2); }
+.prose ul li{ display:flex; align-items:flex-start; gap:var(--s2); }
+.prose ul li .icon{ color:var(--copper); margin-top:.3em; flex:none; }
+
+.content-grid{ display:grid; grid-template-columns:1.3fr .9fr; gap:var(--s7); align-items:start; }
+.content-grid > *{ min-width:0; }
+@media (max-width:900px){ .content-grid{ grid-template-columns:1fr; gap:var(--s5); } }
+
+.content-grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s4); align-items:start; }
+.content-grid-2 > *{ min-width:0; }
+@media (max-width:700px){ .content-grid-2{ grid-template-columns:1fr; } }
+
+.content-grid-3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--s3); align-items:start; }
+.content-grid-3 > *{ min-width:0; }
+@media (max-width:900px){ .content-grid-3{ grid-template-columns:1fr; } }
+
+.info-card{ border:1px solid var(--line); padding:var(--s4); display:grid; gap:var(--s3); }
+.info-card h3{ font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); }
+.info-card dl{ display:grid; gap:var(--s2); margin:0; }
+.info-card dl > div{ display:flex; justify-content:space-between; gap:var(--s2); padding-top:var(--s2); border-top:1px solid var(--line-2); font-size:.9rem; }
+.info-card dl > div:first-child{ border-top:0; padding-top:0; }
+.info-card dt{ color:var(--ink-soft); }
+.info-card dd{ margin:0; font-weight:600; text-align:right; }
+
+/* ---------- Testimonial-Zitat (aus echten Kundenstimmen) ---------- */
+.quote-card{
+  border:1px solid var(--line); border-left:3px solid var(--copper);
+  padding:var(--s4); display:grid; gap:var(--s2);
+  background:var(--paper-soft);
+}
+.quote-card p{ font-family:var(--font-display); font-weight:500; font-size:1.05rem; line-height:1.5; color:var(--ink); }
+.quote-card cite{ font-style:normal; font-size:.82rem; color:var(--ink-soft); }
+
+/* ============================================================
+   TEAM — Über-uns-Sektion
+   ============================================================ */
+.team-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+.team-grid > *{ min-width:0; }
+@media (max-width:900px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px){ .team-grid{ grid-template-columns:1fr; } }
+.team-card{ background:var(--paper); padding:var(--s4); display:grid; gap:var(--s2); }
+.team-card h3{ font-size:1.02rem; }
+.team-card .role{ font-size:.78rem; color:var(--copper-dim); font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.team-card ul{ list-style:none; margin:0; padding:0; display:grid; gap:4px; font-size:.82rem; color:var(--ink-soft); }
+.team-card ul li{ padding-left:1em; position:relative; }
+.team-card ul li::before{ content:"–"; position:absolute; left:0; color:var(--copper); }
+
+/* ============================================================
+   KACHEL-LINKS (Geschäftskunden / Privatkunden Übersicht)
+   ============================================================ */
+.audience-split{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+.audience-split > *{ min-width:0; }
+@media (max-width:820px){ .audience-split{ grid-template-columns:1fr; } }
+.audience-col{ background:var(--paper); padding:var(--s5) var(--s4); display:grid; gap:var(--s3); align-content:start; }
+.audience-col h3{ font-size:1.3rem; }
+.audience-col > p{ color:var(--ink-soft); font-size:.94rem; }
+.audience-links{ list-style:none; margin:0; padding:0; display:grid; }
+.audience-links li{ border-top:1px solid var(--line); }
+.audience-links li:last-child{ border-bottom:1px solid var(--line); }
+.audience-links a{ display:flex; align-items:center; justify-content:space-between; padding:var(--s2) 2px; font-weight:600; font-size:.94rem; transition:color .2s ease, gap .2s ease; gap:var(--s2); }
+.audience-links a:hover{ color:var(--copper); gap:calc(var(--s2) + 6px); }
+.audience-links a .icon{ flex:none; opacity:.5; }
+.audience-links a:hover .icon{ opacity:1; }
+
+/* ============================================================
+   NETZWERK-LISTE (Über uns)
+   ============================================================ */
+.tag-list{ display:flex; flex-wrap:wrap; gap:var(--s2); }
+.tag-list span{ border:1px solid var(--line); padding:.5em 1em; font-size:.84rem; font-weight:600; color:var(--ink-soft); }
+
+/* ============================================================
+   CTA-BAND (vor dem Footer, Kontakt-Aufforderung)
+   ============================================================ */
+.cta-band{ background:var(--ink-deep); color:var(--paper); text-align:center; }
+.cta-band .wrap{ display:grid; gap:var(--s3); justify-items:center; max-width:640px; }
+.cta-band h2{ font-size:clamp(1.6rem,4.5vw,2.4rem); }
+.cta-band p{ color:rgba(245,245,244,.65); }
+
+/* ============================================================
+   FOOTER — identisch zur Ferienprogramm-Seite, um weitere Rubriken erweitert
+   ============================================================ */
+footer{ background:var(--ink-deep); color:rgba(245,245,244,.5); padding-top:var(--s7); border-top:1px solid var(--line-dark); }
+.footer-grid{ display:grid; grid-template-columns:1.4fr repeat(4,1fr); gap:var(--s4); padding-bottom:var(--s6); }
+@media (max-width:900px){ .footer-grid{ grid-template-columns:1fr 1fr; gap:var(--s5); } }
+@media (max-width:560px){ .footer-grid{ grid-template-columns:1fr; } }
+.footer-brand img{ height:32px; margin-bottom:var(--s2); }
+.footer-brand p{ font-size:.86rem; max-width:32ch; }
+.footer-col h4{ font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; color:rgba(245,245,244,.4); margin-bottom:var(--s2); font-family:var(--font-body); font-weight:700; }
+.footer-col ul{ list-style:none; margin:0; padding:0; display:grid; gap:var(--s1); }
+.footer-col a{ font-size:.86rem; color:rgba(245,245,244,.7); transition:color .2s ease; }
+.footer-col a:hover{ color:var(--paper); }
+footer .foot-bottom{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--s3); padding:var(--s4) 0; border-top:1px solid var(--line-dark); font-size:.8rem; }
+footer .foot-social{ display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border:1px solid var(--line-dark); border-radius:999px; color:rgba(245,245,244,.6); transition:border-color .2s ease, color .2s ease; }
+footer .foot-social:hover{ border-color:var(--copper-light); color:var(--copper-light); }
+.foot-social-row{ display:flex; gap:var(--s2); }
+
+/* ============================================================
+   SHOP — Produktraster (Optik, keine Kauf-Funktion in Stufe 1)
+   ============================================================ */
+.shop-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s3); }
+@media (max-width:980px){ .shop-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (max-width:700px){ .shop-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:440px){ .shop-grid{ grid-template-columns:1fr; } }
+.shop-grid > *{ min-width:0; }
+.product-card{ border:1px solid var(--line); background:#fff; display:grid; }
+.product-card img{ aspect-ratio:1/1; object-fit:cover; width:100%; border-bottom:1px solid var(--line); }
+.product-card .product-body{ padding:var(--s3); display:grid; gap:6px; }
+.product-card h3{ font-size:.9rem; letter-spacing:-.005em; }
+.product-card .price{ font-family:var(--font-body); font-variant-numeric:tabular-nums; font-weight:600; color:var(--copper); font-size:.92rem; }
+.shop-note{ border:1px solid var(--line); background:var(--paper-soft); padding:var(--s3) var(--s4); font-size:.86rem; color:var(--ink-soft); display:flex; align-items:flex-start; gap:var(--s2); }
+.shop-note .icon{ color:var(--copper); flex:none; margin-top:.2em; }
+
+/* ============================================================
+   TRAININGSPLAN — wöchentlicher Stundenplan
+   ============================================================ */
+.schedule-grid{ display:grid; gap:var(--s4); }
+.schedule-day h3{ font-size:1rem; padding-bottom:var(--s2); border-bottom:1px solid var(--line); margin-bottom:var(--s2); }
+.schedule-list{ list-style:none; margin:0; padding:0; display:grid; gap:0; }
+.schedule-list li{ display:grid; grid-template-columns:1fr auto; gap:var(--s2); padding:var(--s2) 0; border-top:1px solid var(--line-2); align-items:baseline; }
+.schedule-list li:first-child{ border-top:0; }
+.schedule-list .what{ font-weight:600; font-size:.9rem; }
+.schedule-list .where{ font-size:.78rem; color:var(--ink-soft); display:block; }
+.schedule-list .when{ font-family:var(--font-body); font-variant-numeric:tabular-nums; font-size:.84rem; color:var(--copper-dim); font-weight:600; white-space:nowrap; text-align:right; }
+.schedule-tag{ display:inline-block; font-size:.62rem; text-transform:uppercase; letter-spacing:.06em; background:var(--copper); color:#fff; padding:1px 6px; border-radius:3px; margin-left:6px; vertical-align:2px; }
+
+/* ---------- Seminar-Karten (Fortbildungen mit Termin) ---------- */
+.seminar-list{ display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
+.seminar-item{ background:var(--paper); padding:var(--s4); display:grid; grid-template-columns:1fr auto; gap:var(--s3); align-items:center; }
+@media (max-width:600px){ .seminar-item{ grid-template-columns:1fr; } }
+.seminar-item h3{ font-size:1.02rem; margin-bottom:4px; }
+.seminar-item p{ font-size:.86rem; color:var(--ink-soft); }
+.seminar-item .date-badge{ font-family:var(--font-body); font-variant-numeric:tabular-nums; font-size:.8rem; font-weight:600; color:var(--copper-dim); border:1px solid var(--line); padding:.5em 1em; white-space:nowrap; }
+
+/* ============================================================
+   KONTAKTSEITE
+   ============================================================ */
+.contact-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:var(--s7); align-items:start; }
+.contact-grid > *{ min-width:0; }
+@media (max-width:900px){ .contact-grid{ grid-template-columns:1fr; gap:var(--s5); } }
+.contact-info{ display:grid; gap:var(--s4); }
+.contact-info-item{ display:flex; gap:var(--s3); align-items:flex-start; }
+.contact-info-item .icon{ color:var(--copper); flex:none; margin-top:.15em; width:1.3em; height:1.3em; }
+.contact-info-item h3{ font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft); margin-bottom:4px; }
+.contact-info-item p, .contact-info-item a{ font-size:.96rem; color:var(--ink); }
+.field-group{ display:grid; gap:6px; }
+.field-group label{ font-size:.78rem; font-weight:600; color:var(--ink-soft); }
+.field-input{
+  width:100%; border:1px solid var(--line); background:#fff; padding:.85em 1em; font:inherit; font-size:.94rem;
+  color:var(--ink); transition:border-color .2s ease;
+}
+.field-input:focus{ outline:none; border-color:var(--copper); }
+textarea.field-input{ resize:vertical; min-height:120px; }
+.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s3); }
+.field-row > *{ min-width:0; }
+@media (max-width:520px){ .field-row{ grid-template-columns:1fr; } }
+.form-note{ font-size:.8rem; color:var(--ink-soft); margin-top:var(--s2); }
