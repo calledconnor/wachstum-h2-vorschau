@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Ferienprogramm 2026 · Power Kids · Wachstum²</title>
+<title>Ferienprogramm 2026/27 · Power Kids · Wachstum²</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Ferienprogramm von Wachstum² in Büdelsdorf: Selbstbehauptung, Kampfkunst und Bewegung für Kinder, Jugendliche und Erwachsene in den Schulferien. Jetzt Platz sichern.">
@@ -15,14 +15,14 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wachstum² · Akademie für Selbstbehauptung">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Ferienprogramm 2026 · Power Kids · Wachstum²">
+<meta property="og:title" content="Ferienprogramm 2026/27 · Power Kids · Wachstum²">
 <meta property="og:description" content="Ferienprogramm von Wachstum² in Büdelsdorf: Selbstbehauptung, Kampfkunst und Bewegung für Kinder, Jugendliche und Erwachsene in den Schulferien. Jetzt Platz sichern.">
 <meta property="og:url" content="https://wachstum-hoch-zwei.de/ferienprogramm/">
 <meta property="og:image" content="https://wachstum-hoch-zwei.de/ferienprogramm-og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ferienprogramm 2026 · Power Kids · Wachstum²">
+<meta name="twitter:title" content="Ferienprogramm 2026/27 · Power Kids · Wachstum²">
 <meta name="twitter:description" content="Ferienprogramm von Wachstum² in Büdelsdorf: Selbstbehauptung, Kampfkunst und Bewegung für Kinder, Jugendliche und Erwachsene in den Schulferien. Jetzt Platz sichern.">
 <meta name="twitter:image" content="https://wachstum-hoch-zwei.de/ferienprogramm-og-image.jpg">
 
@@ -107,7 +107,7 @@
   h1,h2{ font-family:var(--font-display); letter-spacing:-.02em; }
   h1{ font-size:clamp(2rem, 5vw, 3.5rem); }
   h3,h4{ font-family:var(--font-body); font-weight:700; letter-spacing:-.01em; line-height:1.2; }
-  h3{ font-size:1.25rem; }
+  h3,h4{ font-size:1.25rem; }
   p{margin:0; line-height:1.6;}
 
   .wrap{max-width:var(--max); margin-inline:auto; padding-inline:var(--container-pad);}
@@ -245,32 +245,6 @@
   }
   .hero-ctas{ display:flex; flex-wrap:wrap; gap:var(--s2); margin-top:var(--s1); }
 
-  /* ---- Marquee ribbon ---- */
-  .marquee-band{
-    position:relative;
-    z-index:1;
-    transform:rotate(-1.4deg);
-    background:var(--copper);
-    margin:0 -6% 0;
-    overflow-x:clip;
-    overflow-y:hidden;
-  }
-  .marquee-track{ display:flex; width:max-content; animation:marquee 32s linear infinite; }
-  @media (prefers-reduced-motion:reduce){ .marquee-track{ animation:none; } }
-  .marquee-track span{
-    display:flex; align-items:center; gap:var(--s2);
-    font-family:var(--font-mono);
-    font-weight:600;
-    font-size:.82rem;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    color:var(--ink-deep);
-    padding:14px 24px;
-    white-space:nowrap;
-  }
-  .marquee-track span .icon{ width:.8em; height:.8em; opacity:.55; }
-  @keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
-
   .audience-pick{
     margin-top:var(--s3); padding-top:var(--s4);
     border-top:1px solid var(--line-dark);
@@ -293,18 +267,14 @@
   .audience-btn .icon{ color:var(--copper-light); }
   .audience-btn .tag{ font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,245,244,.5); display:block; margin-bottom:2px; }
 
-  /* ---------- Countdown — eine echte, berechnete Zahl, ruhig dargestellt.
-     Bleibt unsichtbar, bis JS einen echten Wert eingesetzt hat (kein "– Tage"-Platzhalter). ---------- */
-  .hero-countdown{
+  /* ---------- Trust-Zeile: ein echter, geprüfter Fakt statt eines Countdowns
+     ohne echten Anmeldeschluss-Anker. ---------- */
+  .hero-trust{
+    display:flex; align-items:center; gap:8px;
     font-size:.88rem;
-    color:rgba(245,245,244,.6);
-    display:none;
+    color:rgba(245,245,244,.75);
   }
-  .hero-countdown.is-ready{ display:block; }
-  .hero-countdown .val{
-    font-family:var(--font-mono); font-variant-numeric:tabular-nums;
-    font-weight:600; color:var(--copper-light); font-size:1rem;
-  }
+  .hero-trust .icon{ color:var(--copper-light); flex:none; }
 
   /* ============================================================
      SECTION SCAFFOLD — großzügiger Whitespace
@@ -453,7 +423,7 @@
   .price-tag.tbd{ color:#A9A69F; font-style:italic; font-weight:500; }
 
   /* ---- Slot 3: Titel, max. 2 Zeilen ---- */
-  .offer-card h3{
+  .offer-card h4{
     font-size:1.25rem; letter-spacing:-.01em;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
   }
@@ -480,16 +450,20 @@
   .offer-meta .icon{ color:#B5B3AE; flex:none; }
   .offer-meta .ph{ color:#A9A69F; font-style:italic; }
 
-  /* ---- Slot 6: Buttons, per margin-top:auto immer unten bündig ---- */
+  /* ---- Slot 6: ein klarer Primär-Button, per margin-top:auto immer unten
+     bündig. Sekundäre Aktion als schlichter Textlink, nicht als zweiter
+     gleichwertiger Button — sonst Entscheidungslähmung. ---- */
   .offer-cta-row{
     margin-top:auto; padding-top:var(--s3);
-    display:flex; flex-direction:column; gap:var(--s2);
+    display:grid; gap:var(--s2); justify-items:start;
   }
-  @media (min-width:640px){
-    .offer-cta-row{ flex-direction:row; }
-    .offer-cta-row .btn{ flex:1; }
+  .offer-cta-row .btn{ width:100%; min-width:0; justify-content:center; }
+  .offer-question-link{
+    font-size:.84rem; font-weight:600; color:var(--ink-soft);
+    text-decoration:underline; text-underline-offset:2px;
+    transition:color .2s ease;
   }
-  .offer-cta-row .btn{ min-width:0; }
+  .offer-question-link:hover{ color:var(--copper-dim); }
 
   /* ============================================================
      SAISON-AKKORDEON — jede Ferienzeit als eigener, aufklappbarer Block,
@@ -591,36 +565,22 @@
   .video-card span{ font-size:.76rem; margin-top:4px; }
 
   /* ============================================================
-     BENEFITS — dunkel, große Zahlen als Grafikersatz
+     BENEFITS — konkrete Szenen statt abstrakter Stichwortliste
      ============================================================ */
   .benefits{ background:var(--ink); color:var(--paper); }
-  .benefit-grid{ display:grid; grid-template-columns:repeat(4,1fr); column-gap:var(--s3); }
-  @media (max-width:900px){ .benefit-grid{ grid-template-columns:repeat(2,1fr); } }
-  .benefit-item{
-    padding:var(--s3) 0;
-    border-top:1px solid var(--line-dark);
-    display:flex; align-items:baseline; gap:var(--s2);
+  .scene-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s5); }
+  @media (max-width:820px){ .scene-grid{ grid-template-columns:1fr; } }
+  .scene-item{
+    padding-top:var(--s4); border-top:1px solid var(--line-dark);
+    display:grid; gap:var(--s3);
   }
-  .benefit-item .n{ font-family:var(--font-mono); font-size:.95rem; font-weight:600; color:var(--copper-light); }
-  .benefit-item strong{ font-family:var(--font-display); font-size:1.05rem; font-weight:600; }
-  .benefits-tagline{
-    margin-top:var(--s6); padding-top:var(--s5); border-top:1px solid var(--line-dark);
-    font-family:var(--font-display); font-weight:700;
-    font-size:clamp(1.3rem,3vw,1.9rem);
-    color:var(--paper); text-wrap:balance; max-width:24ch;
-  }
-  .benefits-tagline em{ font-style:normal; color:var(--copper-light); }
+  .scene-item .icon{ color:var(--copper-light); }
+  .scene-item p{ font-size:1.05rem; line-height:1.5; color:rgba(245,245,244,.9); }
 
   /* ============================================================
      WARUM POWER KIDS
      ============================================================ */
-  .why-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--s7); align-items:start; }
-  .why-grid > *{ min-width:0; }
-  @media (max-width:820px){ .why-grid{ grid-template-columns:1fr; gap:var(--s5); } }
-  .why-list{ list-style:none; margin:0; padding:0; display:grid; }
-  .why-list li{ display:flex; align-items:center; gap:var(--s3); font-size:1rem; padding:var(--s2) 0; border-top:1px solid var(--line); }
-  .why-list li:last-child{ border-bottom:1px solid var(--line); }
-  .why-list .icon{ color:var(--copper); flex:none; }
+  .why-grid{ max-width:640px; }
   .why-quote{
     padding-top:var(--s2);
     font-family:var(--font-display);
@@ -696,6 +656,25 @@
   .kid-fields{ display:grid; gap:var(--s2); padding:var(--s2) var(--s2) 0; border-top:1px dashed var(--line); }
   .kid-fields legend{ font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:var(--copper-dim); padding:0; margin-bottom:var(--s1); }
   .form-foot{ font-size:.76rem; color:#8a8781; line-height:1.6; }
+  .consent-field{
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:.82rem; color:var(--ink-soft); line-height:1.5;
+    cursor:pointer;
+  }
+  .consent-field input{ margin-top:3px; flex:none; width:16px; height:16px; accent-color:var(--copper); }
+  .consent-field a{ text-decoration:underline; color:var(--ink); }
+  .programm-confirm{
+    display:flex; align-items:center; gap:6px;
+    margin-top:6px; font-size:.82rem; font-weight:600; color:var(--copper-dim);
+  }
+  .programm-confirm .icon{ flex:none; }
+  .signup-phone{ margin-top:var(--s4); font-size:.94rem; color:var(--ink-soft); }
+  .signup-phone a{ font-weight:700; color:var(--ink); text-decoration:underline; }
+  .offer-recurring-badge{
+    display:inline-flex; align-items:center; gap:5px; width:fit-content;
+    font-size:.7rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:#7A6A2E; background:#F5EBC9; padding:3px 9px; border-radius:var(--radius-sm);
+  }
   .thankyou{ display:none; text-align:center; padding:var(--s5) var(--s3); }
   .thankyou.show{ display:block; }
   .thankyou .mark{ width:48px; height:48px; border:1px solid var(--copper); color:var(--copper); display:grid; place-items:center; margin:0 auto var(--s3); }
@@ -736,7 +715,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "SportsActivityLocation"],
   "@id": "https://wachstum-hoch-zwei.de/#business",
   "name": "Wachstum² – Akademie für Selbstbehauptung",
   "image": "https://wachstum-hoch-zwei.de/assets/og/og-image.jpg",
@@ -781,6 +760,56 @@
   ]
 }
 </script>
+<!-- Event-Schema nur für Angebote mit echtem, bestätigtem Termin — kein Fantasiedatum
+     in strukturierten Daten. Sobald weitere Angebote Termine haben, hier ergänzen. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EventSeries",
+  "name": "Ringen & Raufen – Ferienprogramm Herbstferien 2026",
+  "description": "Spielerische Zweikämpfe und Raufen für Kinder von 7 bis 12 Jahren: Mattenkönig und Bewegungsspiele, Fairness, Respekt und Teamgeist stehen im Mittelpunkt.",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "WH² Akademie Büdelsdorf",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Fehmarnstraße 16",
+      "postalCode": "24782",
+      "addressLocality": "Büdelsdorf",
+      "addressRegion": "Schleswig-Holstein",
+      "addressCountry": "DE"
+    }
+  },
+  "organizer": { "@id": "https://wachstum-hoch-zwei.de/#business" },
+  "offers": {
+    "@type": "Offer",
+    "price": "15",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://wachstum-hoch-zwei.de/ferienprogramm/#anmeldung"
+  },
+  "subEvent": [
+    {
+      "@type": "Event",
+      "name": "Ringen & Raufen",
+      "startDate": "2026-10-19T11:00:00+02:00",
+      "endDate": "2026-10-19T13:00:00+02:00",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled"
+    },
+    {
+      "@type": "Event",
+      "name": "Ringen & Raufen",
+      "startDate": "2026-10-21T11:00:00+02:00",
+      "endDate": "2026-10-21T13:00:00+02:00",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -810,21 +839,21 @@
 <!-- ============================================================ -->
 <header class="hero" id="top">
   <div class="hero-bg" aria-hidden="true">
-    <img src="fotos/kinder-superhelden-gruppe.jpg" alt="" fetchpriority="high">
-    <img src="fotos/selbstschutz-training.jpg" alt="" fetchpriority="low">
-    <img src="fotos/wh2-training-collage.jpg" alt="" loading="lazy">
-    <img src="fotos/kind-thumbs-up.jpg" alt="" loading="lazy">
+    <img src="fotos/kinder-superhelden-gruppe.webp" alt="" fetchpriority="high">
+    <img src="fotos/selbstschutz-training.webp" alt="" fetchpriority="low">
+    <img src="fotos/wh2-training-collage.webp" alt="" loading="lazy">
+    <img src="fotos/kind-thumbs-up.webp" alt="" loading="lazy">
   </div>
   <div class="wrap hero-inner">
-    <span class="eyebrow">Wachstum² Ferienprogramm · WH² Akademie · Büdelsdorf</span>
-    <h1>Power Kids <span class="accent">Ferienprogramme</span></h1>
-    <p class="slogan">Starke Ferien. Bewegung, Selbstvertrauen und jede Menge Spaß in der WH² Akademie.</p>
+    <span class="eyebrow">Wachstum² Power Kids · WH² Akademie · Büdelsdorf</span>
+    <h1>Ferienprogramm für Kinder, Jugendliche <span class="accent">&amp; Erwachsene</span></h1>
+    <p class="slogan">Kampfkunst, Selbstbehauptung und Bewegung in kleinen Gruppen bei erfahrenen Trainern. Von den Herbstferien 2026 bis zu den Sommerferien 2027.</p>
     <div class="hero-ctas">
       <a href="#ferienauswahl" class="btn btn-primary" data-track="cta_hero_main">Ferienprogramm auswählen <svg class="icon"><use href="#i-arrow"/></svg></a>
       <a href="#anmeldung" class="btn btn-ghost">Direkt zur Anmeldung</a>
     </div>
 
-    <p class="hero-countdown"><span class="val" id="statCountdown">–</span> Tage bis zu den Herbstferien 2026</p>
+    <p class="hero-trust"><svg class="icon"><use href="#i-check"/></svg>Schon terminiert: Ringen &amp; Raufen, Mo 19. &amp; Mi 21.10.2026 · WH² Akademie Büdelsdorf</p>
 
     <div class="audience-pick">
       <span class="label">Was suchst du?</span>
@@ -844,14 +873,6 @@
           </span>
         </a>
       </div>
-    </div>
-  </div>
-
-  <div class="marquee-band" aria-hidden="true">
-    <div class="marquee-track" id="marqueeTrack">
-      <span><svg class="icon"><use href="#i-calendar"/></svg>Herbstferien 2026 · 12.–23.10.</span>
-      <span><svg class="icon"><use href="#i-calendar"/></svg>Osterferien 2027 · 30.03.–09.04.</span>
-      <span><svg class="icon"><use href="#i-calendar"/></svg>Sommerferien 2027 · 03.07.–14.08.</span>
     </div>
   </div>
 </header>
@@ -946,13 +967,13 @@
               <div class="offer-grid group--kinder">
 
                 <article class="offer-card reveal" id="angebot-ringen" data-audience="kinder">
-                  <div class="offer-card-photo"><img src="fotos/ringen-raufen.jpg" alt="Trainer und Kinder beim Ringen &amp; Raufen auf der Matte, echtes WH2-Training"></div>
+                  <div class="offer-card-photo"><img src="fotos/ringen-raufen.webp" alt="Trainer und Kinder beim Ringen und Raufen auf der Trainingsmatte in der WH² Akademie Büdelsdorf"></div>
                   <div class="offer-card-body">
                     <div class="offer-card-toprow">
                       <span class="offer-zielgruppe">Kinder 7–12 Jahre</span>
                       <span class="price-tag">15–25 €<span class="unit">/Kind</span></span>
                     </div>
-                    <h3>Ringen &amp; Raufen</h3>
+                    <h4>Ringen &amp; Raufen</h4>
                     <p class="offer-desc">Spielerische Zweikämpfe und Raufen, Mattenkönig und Bewegungsspiele: Fairness, Respekt und Teamgeist stehen im Mittelpunkt. 1 Einheit 15 €, 2 Einheiten 25 € pro Kind. Teilnehmerzahl begrenzt.</p>
                     <div class="offer-meta">
                       <span><svg class="icon"><use href="#i-calendar"/></svg>Mo 19.10. &amp; Mi 21.10.2026</span>
@@ -961,8 +982,8 @@
                       <span><svg class="icon"><use href="#i-pin"/></svg>WH² Akademie, Büdelsdorf</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_ringen" data-offer="Ringen & Raufen">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Ringen & Raufen">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_ringen" data-offer="Ringen & Raufen">Platz sichern · 15–25 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="Ringen & Raufen">Frage stellen</a>
                     </div>
                   </div>
                 </article>
@@ -973,7 +994,7 @@
             <div class="week-group">
               <div class="week-header week-header--misc">
                 <strong class="week-num">Weitere Angebote</strong>
-                <span class="week-dates">Ferienwoche wird noch mit Nils abgestimmt</span>
+                <span class="week-dates">Termine folgen in Kürze</span>
               </div>
 
               <div class="audience-subheader audience--kinder" id="kinder">
@@ -988,9 +1009,10 @@
                       <span class="offer-zielgruppe">Kinder 4–8 Jahre</span>
                       <span class="price-tag">35 €<span class="unit">/Monat</span></span>
                     </div>
-                    <h3>KiYo: Kindertanz &amp; Yoga</h3>
+                    <span class="offer-recurring-badge">Laufender Kurs, auch außerhalb der Ferien</span>
+                    <h4>KiYo: Kindertanz &amp; Yoga</h4>
                     <p class="offer-desc">Bewegung, Freude und Fantasie: kreativer Kindertanz und Yoga-Elemente für Körpergefühl, Konzentration und Ausgeglichenheit, behutsam angeleitet und ohne Leistungsdruck.</p>
-                    <div class="offer-trainer"><img class="offer-trainer-avatar" src="fotos/kiyo-kindertanz.jpg" alt="Tina Witt"> Leitung: Tina Witt</div>
+                    <div class="offer-trainer"><img class="offer-trainer-avatar" src="fotos/kiyo-kindertanz.webp" alt="Tina Witt"> Leitung: Tina Witt</div>
                     <div class="offer-meta">
                       <span><svg class="icon"><use href="#i-calendar"/></svg>Reguläre Zeiten: Mo &amp; Mi</span>
                       <span><svg class="icon"><use href="#i-clock"/></svg>Mo/Mi 14:15–15:15 (4–6 J.), 15:30–16:30 (6–8 J.)</span>
@@ -998,20 +1020,20 @@
                       <span><svg class="icon"><use href="#i-pin"/></svg>WH² Akademie, Büdelsdorf</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_kiyo" data-offer="KiYo – Kindertanz & Yoga">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="KiYo – Kindertanz & Yoga">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_kiyo" data-offer="KiYo – Kindertanz & Yoga">Platz sichern · 35 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="KiYo – Kindertanz & Yoga">Frage stellen</a>
                     </div>
                   </div>
                 </article>
 
                 <article class="offer-card reveal" id="angebot-powerkids" data-audience="kinder">
-                  <div class="offer-card-photo"><img src="fotos/kindertraining.png" alt="Kinder beim WH2-Training: Selbstbehauptung, Bewegung und Teamgeist"></div>
+                  <div class="offer-card-photo"><img src="fotos/kindertraining.webp" alt="Kinder beim WH2-Training: Selbstbehauptung, Bewegung und Teamgeist"></div>
                   <div class="offer-card-body">
                     <div class="offer-card-toprow">
                       <span class="offer-zielgruppe">Kinder &amp; Jugendliche</span>
                       <span class="price-tag tbd">Preis folgt</span>
                     </div>
-                    <h3>Power Kids</h3>
+                    <h4>Power Kids</h4>
                     <p class="offer-desc">Stark. Mutig. Gemeinsam. Unser 3-teiliges Kompaktprogramm: Bewegung, Selbstbehauptung und Teamgeist an drei aufeinander aufbauenden Terminen.</p>
                     <div class="offer-meta">
                       <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Termin folgt</span>
@@ -1020,20 +1042,20 @@
                       <span class="ph"><svg class="icon"><use href="#i-pin"/></svg>Ort folgt</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_powerkids" data-offer="Power Kids">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Power Kids">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_powerkids" data-offer="Power Kids">Platz sichern <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="Power Kids">Frage stellen</a>
                     </div>
                   </div>
                 </article>
 
                 <article class="offer-card reveal" id="angebot-mitschnacken" data-audience="kinder">
-                  <div class="offer-card-photo"><img src="fotos/kind-thumbs-up.jpg" alt="Kind zeigt selbstbewusst den Daumen hoch"></div>
+                  <div class="offer-card-photo"><img src="fotos/kind-thumbs-up.webp" alt="Kind zeigt selbstbewusst den Daumen hoch"></div>
                   <div class="offer-card-body">
                     <div class="offer-card-toprow">
                       <span class="offer-zielgruppe">Kinder &amp; Jugendliche</span>
-                      <span class="price-tag">9 €<span class="unit">/Pers.</span></span>
+                      <span class="price-tag">9 €<span class="unit">/Person</span></span>
                     </div>
-                    <h3>Mitschnacken durch Fremde</h3>
+                    <h4>Mitschnacken durch Fremde</h4>
                     <p class="offer-desc">Was tun, wenn Fremde ansprechen? Altersgerechtes Präventionstraining, das Kindern echte Handlungssicherheit gibt, ohne Angst zu erzeugen.</p>
                     <div class="offer-meta">
                       <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Termin folgt</span>
@@ -1042,20 +1064,20 @@
                       <span class="ph"><svg class="icon"><use href="#i-pin"/></svg>Ort folgt</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_mitschnacken" data-offer="Mitschnacken durch Fremde">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Mitschnacken durch Fremde">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_mitschnacken" data-offer="Mitschnacken durch Fremde">Platz sichern · 9 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="Mitschnacken durch Fremde">Frage stellen</a>
                     </div>
                   </div>
                 </article>
 
                 <article class="offer-card reveal" id="angebot-muaythai" data-audience="kinder">
-                  <div class="offer-card-photo"><img src="fotos/muay-thai-kids.png" alt="Kinder und Jugendliche beim Muay-Thai-Training mit Boxhandschuhen"></div>
+                  <div class="offer-card-photo"><img src="fotos/muay-thai-kids.webp" alt="Kinder und Jugendliche beim Muay-Thai-Training mit Boxhandschuhen"></div>
                   <div class="offer-card-body">
                     <div class="offer-card-toprow">
                       <span class="offer-zielgruppe">Kinder &amp; Jugendliche</span>
                       <span class="price-tag">10 €</span>
                     </div>
-                    <h3>Muay Thai</h3>
+                    <h4>Muay Thai</h4>
                     <p class="offer-desc">Thai-Boxen für Einsteiger: Technik, Kondition und Disziplin unter Anleitung erfahrener Trainer.</p>
                     <div class="offer-trainer"><svg class="icon"><use href="#i-users"/></svg> Leitung: Michèle Morell</div>
                     <div class="offer-meta">
@@ -1065,20 +1087,20 @@
                       <span><svg class="icon"><use href="#i-pin"/></svg>WH² Akademie, Büdelsdorf</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_muaythai" data-offer="Muay Thai">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Muay Thai">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_muaythai" data-offer="Muay Thai">Platz sichern · 10 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="Muay Thai">Frage stellen</a>
                     </div>
                   </div>
                 </article>
 
                 <article class="offer-card reveal" id="angebot-defence-jugend" data-audience="kinder">
-                  <div class="offer-card-photo"><img src="fotos/selbstschutz-training.jpg" alt="Selbstverteidigungstraining bei Wachstum² defence"></div>
+                  <div class="offer-card-photo"><img src="fotos/selbstschutz-training.webp" alt="Selbstverteidigungstraining bei Wachstum² defence"></div>
                   <div class="offer-card-body">
                     <div class="offer-card-toprow">
                       <span class="offer-zielgruppe">Jugendliche</span>
-                      <span class="price-tag">10 €<span class="unit">/Pers.</span></span>
+                      <span class="price-tag">10 €<span class="unit">/Person</span></span>
                     </div>
-                    <h3>Defence Schnupperkurs für Jugendliche</h3>
+                    <h4>Defence Schnupperkurs für Jugendliche</h4>
                     <p class="offer-desc">Erster Einblick in unser WH2-Defence-Training: druckfrei, in kleiner Gruppe, ohne Vorkenntnisse.</p>
                     <div class="offer-trainer"><svg class="icon"><use href="#i-users"/></svg> Leitung: Nils Hadenfeld</div>
                     <div class="offer-meta">
@@ -1088,8 +1110,8 @@
                       <span><svg class="icon"><use href="#i-pin"/></svg>WH² Akademie, Büdelsdorf</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_defence_jugend" data-offer="Defence Schnupperkurs für Jugendliche">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Defence Schnupperkurs für Jugendliche">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_defence_jugend" data-offer="Defence Schnupperkurs für Jugendliche">Platz sichern · 10 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="Defence Schnupperkurs für Jugendliche">Frage stellen</a>
                     </div>
                   </div>
                 </article>
@@ -1103,14 +1125,14 @@
               <div class="offer-grid group--erwachsene">
 
                 <article class="offer-card reveal" id="angebot-selbstschutz-frauen" data-audience="erwachsene">
-                  <div class="offer-card-photo"><img src="fotos/selbstschutz-frauen.png" alt="Frau beim Selbstverteidigungstraining bei Wachstum² defence"></div>
+                  <div class="offer-card-photo"><img src="fotos/selbstschutz-frauen.webp" alt="Frau beim Selbstverteidigungstraining bei Wachstum² defence"></div>
                   <div class="offer-card-body">
                     <div class="offer-card-toprow">
                       <span class="offer-zielgruppe">Frauen &amp; Mädchen</span>
                       <span class="price-tag">49 €</span>
                     </div>
-                    <h3>Selbstschutz für Frauen &amp; Mädchen</h3>
-                    <p class="offer-desc">Klare Handlungsstrategien für den Ernstfall, vermittelt in ruhiger Atmosphäre, ohne Vorkenntnisse, im eigenen Tempo. Keine Kampfsport-Erfahrung nötig.</p>
+                    <h4>Selbstschutz für Frauen &amp; Mädchen</h4>
+                    <p class="offer-desc">Klare Handlungsstrategien für den Ernstfall, vermittelt in ruhiger Atmosphäre. Keine Kampfsport-Erfahrung nötig, jede kann in ihrem eigenen Tempo einsteigen.</p>
                     <div class="offer-meta">
                       <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Termin folgt</span>
                       <span class="ph"><svg class="icon"><use href="#i-clock"/></svg>Termin folgt</span>
@@ -1118,8 +1140,8 @@
                       <span><svg class="icon"><use href="#i-pin"/></svg>WH² Akademie, Büdelsdorf</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_selbstschutz_frauen" data-offer="Selbstschutz für Frauen & Mädchen">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Selbstschutz für Frauen & Mädchen">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_selbstschutz_frauen" data-offer="Selbstschutz für Frauen & Mädchen">Platz sichern · 49 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="Selbstschutz für Frauen & Mädchen">Frage stellen</a>
                     </div>
                   </div>
                 </article>
@@ -1129,9 +1151,10 @@
                   <div class="offer-card-body">
                     <div class="offer-card-toprow">
                       <span class="offer-zielgruppe">Eltern &amp; Erwachsene</span>
-                      <span class="price-tag">15 €<span class="unit">/TN</span></span>
+                      <span class="price-tag">15 €<span class="unit">/Teilnehmer</span></span>
                     </div>
-                    <h3>Klangschalen</h3>
+                    <span class="offer-recurring-badge">Laufender Kurs, auch außerhalb der Ferien</span>
+                    <h4>Klangschalen</h4>
                     <p class="offer-desc">Entspannung durch Klang: eine ruhige Auszeit für Körper und Geist während der hektischen Ferienzeit.</p>
                     <div class="offer-trainer"><svg class="icon"><use href="#i-users"/></svg> Leitung: Barbara Nissen</div>
                     <div class="offer-meta">
@@ -1141,21 +1164,21 @@
                       <span><svg class="icon"><use href="#i-pin"/></svg>WH² Akademie, Büdelsdorf</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_klangschalen" data-offer="Klangschalen">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:office@wachstum-h2.de" data-mailto-offer="Klangschalen" data-mailto-to="office@wachstum-h2.de">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_klangschalen" data-offer="Klangschalen">Platz sichern · 15 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:office@wachstum-h2.de" data-mailto-offer="Klangschalen" data-mailto-to="office@wachstum-h2.de">Frage stellen</a>
                     </div>
                   </div>
                 </article>
 
                 <article class="offer-card reveal" id="angebot-selbstschutz-senioren" data-audience="erwachsene">
-                  <div class="offer-card-photo"><img src="fotos/selbstschutz-senioren.png" alt="Seniorenpaar in Wachstum²-Trainingskleidung, echtes WH2-Foto"></div>
+                  <div class="offer-card-photo"><img src="fotos/selbstschutz-senioren.webp" alt="Seniorenpaar in Wachstum²-Trainingskleidung, lächelnd nach dem Training"></div>
                   <div class="offer-card-body">
                     <div class="offer-card-toprow">
                       <span class="offer-zielgruppe">Senioren</span>
                       <span class="price-tag">49 €</span>
                     </div>
-                    <h3>Selbstschutz für Senioren</h3>
-                    <p class="offer-desc">Sicherheit im Alltag: einfache, wirkungsvolle Techniken für ein gutes Gefühl unterwegs, ohne Druck, im eigenen Tempo.</p>
+                    <h4>Selbstschutz für Senioren</h4>
+                    <p class="offer-desc">Sicherheit im Alltag: einfache, wirkungsvolle Techniken für ein gutes Gefühl unterwegs. Keine Eile, keine Vorführung, jeder übt so oft er mag.</p>
                     <div class="offer-meta">
                       <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Termin folgt</span>
                       <span class="ph"><svg class="icon"><use href="#i-clock"/></svg>Termin folgt</span>
@@ -1163,8 +1186,8 @@
                       <span><svg class="icon"><use href="#i-pin"/></svg>WH² Akademie, Büdelsdorf</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_selbstschutz_senioren" data-offer="Selbstschutz für Senioren">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Selbstschutz für Senioren">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_selbstschutz_senioren" data-offer="Selbstschutz für Senioren">Platz sichern · 49 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="Selbstschutz für Senioren">Frage stellen</a>
                     </div>
                   </div>
                 </article>
@@ -1176,7 +1199,7 @@
                       <span class="offer-zielgruppe">Eltern</span>
                       <span class="price-tag">25 €</span>
                     </div>
-                    <h3>Elternworkshops</h3>
+                    <h4>Elternworkshops</h4>
                     <p class="offer-desc">Drei Workshops rund um Erziehung, Grenzen und Selbstbehauptung, im Austausch mit unseren Pädagogen.</p>
                     <div class="offer-trainer"><svg class="icon"><use href="#i-users"/></svg> Leitung: Henrik Bornhöft</div>
                     <div class="offer-meta">
@@ -1186,8 +1209,8 @@
                       <span class="ph"><svg class="icon"><use href="#i-pin"/></svg>Ort folgt</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_elternworkshops" data-offer="Elternworkshops">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Elternworkshops">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_elternworkshops" data-offer="Elternworkshops">Platz sichern · 25 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="Elternworkshops">Frage stellen</a>
                     </div>
                   </div>
                 </article>
@@ -1199,7 +1222,7 @@
                       <span class="offer-zielgruppe">Eltern &amp; Erwachsene</span>
                       <span class="price-tag">49 €</span>
                     </div>
-                    <h3>Waldbaden</h3>
+                    <h4>Waldbaden</h4>
                     <p class="offer-desc">Bewusstes Innehalten im Wald: Achtsamkeit und Naturerlebnis als Ausgleich zum Alltag.</p>
                     <div class="offer-meta">
                       <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Termin folgt</span>
@@ -1208,8 +1231,8 @@
                       <span class="ph"><svg class="icon"><use href="#i-pin"/></svg>Ort folgt</span>
                     </div>
                     <div class="offer-cta-row">
-                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_waldbaden" data-offer="Waldbaden">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Waldbaden">Per E-Mail anfragen</a>
+                      <a href="#anmeldung" class="btn btn-primary" data-track="offer_waldbaden" data-offer="Waldbaden">Platz sichern · 49 € <svg class="icon"><use href="#i-arrow"/></svg></a>
+                      <a class="offer-question-link" href="mailto:info@wachstum-h2.de" data-mailto-offer="Waldbaden">Frage stellen</a>
                     </div>
                   </div>
                 </article>
@@ -1281,7 +1304,7 @@
           <span>Video folgt · zum YouTube-Kanal</span>
         </a>
       </div>
-      <p class="faq-note">Hinweis für die Umsetzung: Platzhalter, bis Nils die passenden YouTube-Videos benennt oder neu dreht. Sobald IDs feststehen, werden hier echte eingebettete Player eingesetzt.</p>
+      <p class="faq-note">Weitere Videos folgen in Kürze auf unserem YouTube-Kanal.</p>
     </div>
   </section>
 
@@ -1294,16 +1317,20 @@
         <span class="eyebrow">Was erwartet die Kinder?</span>
         <h2>Mehr als Beschäftigung in den Ferien</h2>
       </div>
-      <div class="benefit-grid">
-        <div class="benefit-item reveal"><span class="n">01</span><strong>Bewegung</strong></div>
-        <div class="benefit-item reveal"><span class="n">02</span><strong>Selbstbehauptung</strong></div>
-        <div class="benefit-item reveal"><span class="n">03</span><strong>Teamwork</strong></div>
-        <div class="benefit-item reveal"><span class="n">04</span><strong>Mut</strong></div>
-        <div class="benefit-item reveal"><span class="n">05</span><strong>Soziale Kompetenz</strong></div>
-        <div class="benefit-item reveal"><span class="n">06</span><strong>Spaß</strong></div>
-        <div class="benefit-item reveal"><span class="n">07</span><strong>Neue Erfahrungen</strong></div>
+      <div class="scene-grid">
+        <div class="scene-item reveal">
+          <svg class="icon icon-lg"><use href="#i-check"/></svg>
+          <p>Dein Kind lernt, laut und deutlich Nein zu sagen, und übt es, bis es sitzt.</p>
+        </div>
+        <div class="scene-item reveal">
+          <svg class="icon icon-lg"><use href="#i-check"/></svg>
+          <p>Nach den Tagen im Programm kennt es mehrere neue Kinder mit Namen.</p>
+        </div>
+        <div class="scene-item reveal">
+          <svg class="icon icon-lg"><use href="#i-check"/></svg>
+          <p>Es kommt müde nach Hause, ausgepowert vom Training, nicht aufgedreht vom Handy.</p>
+        </div>
       </div>
-      <p class="benefits-tagline reveal">Der Schwerpunkt liegt nicht auf reiner Kinderbespaßung, sondern auf <em>Entwicklung und echtem Erlebnis.</em></p>
     </div>
   </section>
 
@@ -1317,17 +1344,8 @@
         <h2>Was unsere Angebote auszeichnet</h2>
       </div>
       <div class="why-grid">
-        <ul class="why-list">
-          <li class="reveal"><svg class="icon"><use href="#i-check"/></svg>Pädagogischer Ansatz statt reiner Betreuung</li>
-          <li class="reveal"><svg class="icon"><use href="#i-check"/></svg>Förderung von Selbstvertrauen</li>
-          <li class="reveal"><svg class="icon"><use href="#i-check"/></svg>Soziale Kompetenz</li>
-          <li class="reveal"><svg class="icon"><use href="#i-check"/></svg>Selbstbehauptung</li>
-          <li class="reveal"><svg class="icon"><use href="#i-check"/></svg>Bewegung und Körpergefühl</li>
-          <li class="reveal"><svg class="icon"><use href="#i-check"/></svg>Altersgerechte Übungen</li>
-          <li class="reveal"><svg class="icon"><use href="#i-check"/></svg>Lernen durch praktische Erfahrungen</li>
-        </ul>
         <div class="reveal">
-          <div class="why-photo"><img src="fotos/wh2-training-collage.jpg" alt="Training bei Wachstum², echte Aufnahmen aus dem Kurs"></div>
+          <div class="why-photo"><img src="fotos/wh2-training-collage.webp" alt="Training bei Wachstum²"></div>
           <p class="why-quote">Ferien dürfen Spaß machen – und Kinder können gleichzeitig etwas fürs Leben mitnehmen.</p>
           <p class="why-quote-src">Nils Hadenfeld, Wachstum²</p>
         </div>
@@ -1347,7 +1365,7 @@
       <div class="faq-list">
         <details class="faq-item reveal">
           <summary>Wer betreut die Angebote? <svg class="icon"><use href="#i-plus"/></svg></summary>
-          <p class="a">Alle Kurse werden von erfahrenen WH2-Trainern geleitet, die mit der jeweiligen Altersgruppe vertraut sind, u. a. Tina Witt (KiYo), Michèle Morell (Muay Thai), Nils Hadenfeld (Defence) und Henrik Bornhöft (Elternworkshops). Für die übrigen Angebote wird das Trainerteam hier ergänzt, sobald final zugeordnet.</p>
+          <p class="a">Alle Kurse werden von erfahrenen WH2-Trainern geleitet, die mit der jeweiligen Altersgruppe vertraut sind, u. a. Tina Witt (KiYo), Michèle Morell (Muay Thai), Nils Hadenfeld (Defence) und Henrik Bornhöft (Elternworkshops). Für die übrigen Angebote ergänzen wir das Trainerteam hier in Kürze.</p>
         </details>
         <details class="faq-item reveal">
           <summary>Wie läuft die Betreuung ab? <svg class="icon"><use href="#i-plus"/></svg></summary>
@@ -1355,7 +1373,7 @@
         </details>
         <details class="faq-item reveal">
           <summary>Welche Kleidung wird benötigt? <svg class="icon"><use href="#i-plus"/></svg></summary>
-          <p class="a">Bequeme Sportkleidung reicht in der Regel aus. Angebotsspezifische Hinweise (z. B. für Muay Thai oder Defence) ergänzen wir direkt bei der jeweiligen Kachel, sobald final abgestimmt.</p>
+          <p class="a">Bequeme Sportkleidung reicht in der Regel aus. Angebotsspezifische Hinweise (z. B. für Muay Thai oder Defence) ergänzen wir direkt bei der jeweiligen Kachel.</p>
         </details>
         <details class="faq-item reveal">
           <summary>Was müssen Kinder mitbringen? <svg class="icon"><use href="#i-plus"/></svg></summary>
@@ -1363,14 +1381,13 @@
         </details>
         <details class="faq-item reveal">
           <summary>Was passiert bei Krankheit oder Verhinderung? <svg class="icon"><use href="#i-plus"/></svg></summary>
-          <p class="a">Unsere Stornierungs- und Nachhol-Regelung wird hier ergänzt, sobald sie mit Nils final abgestimmt ist.</p>
+          <p class="a">Melde dich in dem Fall einfach kurz bei uns unter info@wachstum-h2.de oder telefonisch, wir finden gemeinsam eine Lösung.</p>
         </details>
         <details class="faq-item reveal">
           <summary>Wie erfahre ich, ob noch Plätze frei sind? <svg class="icon"><use href="#i-plus"/></svg></summary>
           <p class="a">Nach dem Absenden des Anmeldeformulars meldet sich das WH2-Team direkt mit einer Bestätigung, inklusive Hinweis, falls ein Angebot bereits ausgebucht ist.</p>
         </details>
       </div>
-      <p class="faq-note">Hinweis für die Umsetzung: Diese Antworten sind Entwürfe. Bitte von Nils inhaltlich prüfen und freigeben, bevor die Seite live geht.</p>
     </div>
   </section>
 
@@ -1384,10 +1401,11 @@
         <h2 style="margin-top:var(--s2); font-size:clamp(1.7rem,3.4vw,2.4rem);">In 2 Minuten den Platz sichern</h2>
         <p style="margin-top:var(--s3); color:var(--ink-soft);">Einfach Angebot wählen, Kontaktdaten eintragen: wir melden uns zur Bestätigung zurück.</p>
         <ul>
-          <li><svg class="icon"><use href="#i-check"/></svg>Keine Zahlung nötig, zunächst nur verbindliche Anmeldung</li>
+          <li><svg class="icon"><use href="#i-check"/></svg>Keine Zahlung nötig, wir bestätigen deine Anmeldung per E-Mail</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Rückmeldung direkt per E-Mail</li>
           <li><svg class="icon"><use href="#i-check"/></svg>Änderungen jederzeit über info@wachstum-h2.de möglich</li>
         </ul>
+        <p class="signup-phone">Lieber kurz anrufen? <a href="tel:+4943311340064">04331 13 400 64</a></p>
       </div>
 
       <div>
@@ -1421,6 +1439,7 @@
                   <option>Waldbaden</option>
                 </optgroup>
               </select>
+              <p class="programm-confirm" id="programm-confirm" style="display:none;"><svg class="icon"><use href="#i-check"/></svg><span></span></p>
             </div>
           </div>
 
@@ -1454,10 +1473,15 @@
               <input id="f-mail" name="email" type="email" required autocomplete="email">
             </div>
             <div class="field">
-              <label for="f-tel">Telefonnummer</label>
-              <input id="f-tel" name="telefon" type="tel" required autocomplete="tel">
+              <label for="f-tel">Telefonnummer (optional)</label>
+              <input id="f-tel" name="telefon" type="tel" autocomplete="tel">
             </div>
           </div>
+
+          <label class="consent-field">
+            <input type="checkbox" id="f-consent" name="datenschutz_akzeptiert" required>
+            <span>Ich habe die <a href="https://wachstum-hoch-zwei.de/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben (bei Kinder-Angeboten inkl. Name und Alter des Kindes) zur Bearbeitung dieser Anmeldung einverstanden.</span>
+          </label>
 
           <button type="submit" class="btn btn-primary btn-block" data-track="cta_platz_sichern">Platz sichern</button>
           <p class="form-foot" id="signup-form-note">Deine Anmeldung geht direkt per E-Mail an info@wachstum-h2.de.</p>
@@ -1478,8 +1502,8 @@
 <footer>
   <div class="wrap">
     <div class="foot-contact">
-      <span><strong>Wachstum²</strong> · WH2 Defence &amp; Next Level</span>
-      <span>info@wachstum-h2.de · 04331 / 13 400 64</span>
+      <span><a href="https://wachstum-hoch-zwei.de/" target="_blank" rel="noopener"><strong>Wachstum²</strong></a> · WH2 Defence &amp; Next Level</span>
+      <span><a href="mailto:info@wachstum-h2.de">info@wachstum-h2.de</a> · <a href="tel:+4943311340064">04331 / 13 400 64</a></span>
     </div>
     <div class="foot-links">
       <a href="https://www.instagram.com/wachstumhoch2/" class="foot-social" aria-label="Instagram" target="_blank" rel="noopener"><svg class="icon"><use href="#i-instagram"/></svg></a>
@@ -1509,20 +1533,6 @@
     console.log('[WH2 Tracking]', name, params);
   }
   trackEvent('page_view', {page:'ferienprogramm'});
-
-  /* ---------- Ferien-Ticker: Duplikat für den nahtlosen Loop wird per JS erzeugt,
-     nicht im Markup von Hand dupliziert (nur eine Quelle zum Pflegen). Die Animation
-     verschiebt .marquee-track um -50% seiner eigenen Breite, braucht also intern
-     zwei gleiche Kopien der Einträge — wie zuvor, nur nicht mehr im HTML dupliziert. ---------- */
-  var marqueeTrack = document.getElementById('marqueeTrack');
-  if (marqueeTrack) {
-    var originalItems = Array.prototype.slice.call(marqueeTrack.children);
-    originalItems.forEach(function(item){
-      var clone = item.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      marqueeTrack.appendChild(clone);
-    });
-  }
 
   document.querySelectorAll('[data-track]').forEach(function(el){
     el.addEventListener('click', function(){
@@ -1581,12 +1591,34 @@
     a.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject);
   });
 
-  /* ---------- Kind-Felder nur bei Kinder-Angeboten ---------- */
+  /* ---------- Kind-Felder nur bei Kinder-Angeboten, plus Bestätigungszeile
+     "Dein Angebot: ..." — damit nach dem Sprung von einer Kachel klar sichtbar
+     ist, dass wirklich das richtige Angebot vorausgewählt wurde. ---------- */
   var kidOffers = ['KiYo – Kindertanz & Yoga','Ringen & Raufen','Power Kids','Mitschnacken durch Fremde','Muay Thai','Defence Schnupperkurs für Jugendliche'];
+  var offerPrices = {
+    'Ringen & Raufen': '15–25 € / Kind',
+    'KiYo – Kindertanz & Yoga': '35 € / Monat',
+    'Power Kids': 'Preis folgt',
+    'Mitschnacken durch Fremde': '9 € / Person',
+    'Muay Thai': '10 €',
+    'Defence Schnupperkurs für Jugendliche': '10 € / Person',
+    'Selbstschutz für Frauen & Mädchen': '49 €',
+    'Klangschalen': '15 € / Teilnehmer',
+    'Selbstschutz für Senioren': '49 €',
+    'Elternworkshops': '25 €',
+    'Waldbaden': '49 €'
+  };
   var programmSelect = document.getElementById('f-programm');
   var kidFields = document.getElementById('kid-fields');
+  var programmConfirm = document.getElementById('programm-confirm');
   function syncKidFields(){
     kidFields.style.display = kidOffers.indexOf(programmSelect.value) > -1 ? '' : 'none';
+    if (programmSelect.value && offerPrices[programmSelect.value]) {
+      programmConfirm.querySelector('span').textContent = 'Dein Angebot: ' + programmSelect.value + ' · ' + offerPrices[programmSelect.value];
+      programmConfirm.style.display = 'flex';
+    } else {
+      programmConfirm.style.display = 'none';
+    }
   }
   programmSelect.addEventListener('change', syncKidFields);
   syncKidFields();
@@ -1658,17 +1690,6 @@
     revealAll();
   }
   setTimeout(revealAll, 1200);
-
-  /* ---------- Live-Countdown zur nächsten Ferienzeit ----------
-     Echte, aus dem Kalenderdatum berechnete Zahl — kein Fantasiewert. */
-  var countdownEl = document.getElementById('statCountdown');
-  if (countdownEl) {
-    var target = new Date('2026-10-12T00:00:00');
-    var now = new Date();
-    var days = Math.max(0, Math.ceil((target - now) / 86400000));
-    countdownEl.textContent = days;
-    countdownEl.closest('.hero-countdown').classList.add('is-ready');
-  }
 
   /* ---------- Tracking: Klick auf ein Angebot (PDF Punkt 11.4) ----------
      Separat vom Klick auf "Platz sichern" (11.5) — die Karte selbst gilt
