@@ -965,16 +965,16 @@
                 <article class="offer-card reveal" id="angebot-kiyo" data-audience="kinder">
                   <div class="offer-card-body">
                     <div class="offer-card-toprow">
-                      <span class="offer-zielgruppe">Kinder &amp; Jugendliche</span>
+                      <span class="offer-zielgruppe">Kinder 4–8 Jahre</span>
                       <span class="price-tag">35 €<span class="unit">/Monat</span></span>
                     </div>
                     <h3>KiYo: Kindertanz &amp; Yoga</h3>
-                    <p class="offer-desc">Tanzen, dehnen, zur Ruhe kommen: kreative Bewegung und Yoga-Elemente für Körpergefühl, Konzentration und Ausgeglichenheit, behutsam angeleitet und ohne Leistungsdruck.</p>
+                    <p class="offer-desc">Bewegung, Freude und Fantasie: kreativer Kindertanz und Yoga-Elemente für Körpergefühl, Konzentration und Ausgeglichenheit, behutsam angeleitet und ohne Leistungsdruck.</p>
                     <div class="offer-trainer"><img class="offer-trainer-avatar" src="fotos/kiyo-kindertanz.jpg" alt="Tina Witt"> Leitung: Tina Witt</div>
                     <div class="offer-meta">
-                      <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Termin folgt</span>
-                      <span class="ph"><svg class="icon"><use href="#i-clock"/></svg>Termin folgt</span>
-                      <span><svg class="icon"><use href="#i-clock"/></svg>1 Std.</span>
+                      <span><svg class="icon"><use href="#i-calendar"/></svg>Reguläre Zeiten: Mo &amp; Mi</span>
+                      <span><svg class="icon"><use href="#i-clock"/></svg>Mo/Mi 14:15–15:15 (4–6 J.), 15:30–16:30 (6–8 J.)</span>
+                      <span class="ph"><svg class="icon"><use href="#i-clock"/></svg>Ferientermin folgt</span>
                       <span><svg class="icon"><use href="#i-pin"/></svg>WH² Akademie, Büdelsdorf</span>
                     </div>
                     <div class="offer-cta-row">
@@ -992,7 +992,7 @@
                       <span class="price-tag tbd">Preis folgt</span>
                     </div>
                     <h3>Power Kids</h3>
-                    <p class="offer-desc">Unser 3-teiliges Kompaktprogramm: Bewegung, Selbstbehauptung und Teamgeist an drei aufeinander aufbauenden Terminen.</p>
+                    <p class="offer-desc">Stark. Mutig. Gemeinsam. Unser 3-teiliges Kompaktprogramm: Bewegung, Selbstbehauptung und Teamgeist an drei aufeinander aufbauenden Terminen.</p>
                     <div class="offer-meta">
                       <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Termin folgt</span>
                       <span class="ph"><svg class="icon"><use href="#i-clock"/></svg>Termin folgt</span>
@@ -1113,15 +1113,16 @@
                     </div>
                     <h3>Klangschalen</h3>
                     <p class="offer-desc">Entspannung durch Klang: eine ruhige Auszeit für Körper und Geist während der hektischen Ferienzeit.</p>
+                    <div class="offer-trainer"><svg class="icon"><use href="#i-users"/></svg> Leitung: Barbara Nissen</div>
                     <div class="offer-meta">
-                      <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Termin folgt</span>
+                      <span class="ph"><svg class="icon"><use href="#i-calendar"/></svg>Ferientermin folgt (reguläre Termine: 24.04./22.05./09.10./20.11.)</span>
                       <span><svg class="icon"><use href="#i-clock"/></svg>15:00–16:30 Uhr</span>
                       <span><svg class="icon"><use href="#i-clock"/></svg>1,5 Std.</span>
-                      <span class="ph"><svg class="icon"><use href="#i-pin"/></svg>Ort folgt</span>
+                      <span><svg class="icon"><use href="#i-pin"/></svg>WH² Akademie, Büdelsdorf</span>
                     </div>
                     <div class="offer-cta-row">
                       <a href="#anmeldung" class="btn btn-primary" data-track="offer_klangschalen" data-offer="Klangschalen">Infos &amp; Anmeldung <svg class="icon"><use href="#i-arrow"/></svg></a>
-                      <a class="btn btn-outline" href="mailto:info@wachstum-h2.de" data-mailto-offer="Klangschalen">Per E-Mail anfragen</a>
+                      <a class="btn btn-outline" href="mailto:office@wachstum-h2.de" data-mailto-offer="Klangschalen" data-mailto-to="office@wachstum-h2.de">Per E-Mail anfragen</a>
                     </div>
                   </div>
                 </article>
@@ -1551,10 +1552,13 @@
     });
   });
 
-  /* ---------- mailto-Kurzoption pro Angebot, mit vorbereiteter Betreffzeile ---------- */
+  /* ---------- mailto-Kurzoption pro Angebot, mit vorbereiteter Betreffzeile ----------
+     Normalerweise info@wachstum-h2.de, aber pro Angebot per data-mailto-to auf die
+     zuständige Person umleitbar (z. B. Barbara Nissen bei Klangschalen). ---------- */
   document.querySelectorAll('[data-mailto-offer]').forEach(function(a){
     var subject = 'Anfrage Ferienprogramm – ' + a.dataset.mailtoOffer;
-    a.href = 'mailto:info@wachstum-h2.de?subject=' + encodeURIComponent(subject);
+    var to = a.dataset.mailtoTo || 'info@wachstum-h2.de';
+    a.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject);
   });
 
   /* ---------- Kind-Felder nur bei Kinder-Angeboten ---------- */
