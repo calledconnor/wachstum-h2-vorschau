@@ -154,9 +154,10 @@
     position:relative;
     background:var(--ink-deep);
     color:var(--paper);
-    padding:clamp(64px,10vw,104px) 0 0;
+    padding:clamp(40px,10vw,104px) 0 0;
     overflow:clip;
   }
+  @media (max-width:640px){ .hero{ padding-top:40px; } }
 
   /* ---- Hintergrund-Fotoloop: 4 Fotos, Duoton in der Markenfarbe, ruhige
      Überblendung + leichter Zoom. Kein echtes Video nötig, wirkt aber wie eins. ---- */
@@ -205,6 +206,7 @@
   }
 
   .hero-inner{ position:relative; z-index:1; display:grid; gap:var(--s3); max-width:640px; padding-bottom:var(--s6); }
+  @media (max-width:640px){ .hero-inner{ gap:var(--s2); padding-bottom:var(--s4); } }
   .hero h1{
     font-size:clamp(2rem, 5vw, 3.5rem);
     letter-spacing:-.03em;
@@ -255,8 +257,10 @@
     border-top:1px solid var(--line-dark);
     display:grid; gap:var(--s2);
   }
+  @media (max-width:640px){ .audience-pick{ margin-top:var(--s2); padding-top:var(--s3); } }
   .audience-pick .label{ font-weight:600; color:rgba(245,245,244,.6); font-size:.9rem; }
   .audience-row{ display:flex; flex-wrap:wrap; gap:var(--s2); }
+  @media (max-width:640px){ .audience-row{ flex-wrap:nowrap; } .audience-btn{ flex:1; min-width:0; } }
   .audience-btn{
     display:flex; align-items:center; gap:var(--s2);
     padding:var(--s2) var(--s3);
@@ -786,10 +790,10 @@
 <!-- ============================================================ -->
 <header class="hero" id="top">
   <div class="hero-bg" aria-hidden="true">
-    <img src="fotos/kinder-superhelden-gruppe.jpg" alt="">
-    <img src="fotos/selbstschutz-training.jpg" alt="">
-    <img src="fotos/wh2-training-collage.jpg" alt="">
-    <img src="fotos/kind-thumbs-up.jpg" alt="">
+    <img src="fotos/kinder-superhelden-gruppe.jpg" alt="" fetchpriority="high">
+    <img src="fotos/selbstschutz-training.jpg" alt="" loading="lazy">
+    <img src="fotos/wh2-training-collage.jpg" alt="" loading="lazy">
+    <img src="fotos/kind-thumbs-up.jpg" alt="" loading="lazy">
   </div>
   <div class="wrap hero-inner">
     <span class="eyebrow">Wachstum² Ferienprogramm · WH² Akademie · Büdelsdorf</span>
@@ -890,7 +894,7 @@
       <div class="season-accordion-list">
 
         <!-- ============ HERBSTFERIEN 2026 ============ -->
-        <details class="season-block season--herbst reveal" id="saison-herbst" open>
+        <details class="season-block season--herbst reveal" id="saison-herbst" name="ferienzeit" open>
           <summary class="season-block-head">
             <svg class="icon icon-lg season-icon"><use href="#i-leaf"/></svg>
             <span class="season-title">
@@ -1196,7 +1200,7 @@
         </details>
 
         <!-- ============ OSTERFERIEN 2027 ============ -->
-        <details class="season-block season--ostern reveal" id="saison-ostern">
+        <details class="season-block season--ostern reveal" id="saison-ostern" name="ferienzeit">
           <summary class="season-block-head">
             <svg class="icon icon-lg season-icon"><use href="#i-flower"/></svg>
             <span class="season-title">
@@ -1211,7 +1215,7 @@
         </details>
 
         <!-- ============ SOMMERFERIEN 2027 ============ -->
-        <details class="season-block season--sommer reveal" id="saison-sommer">
+        <details class="season-block season--sommer reveal" id="saison-sommer" name="ferienzeit">
           <summary class="season-block-head">
             <svg class="icon icon-lg season-icon"><use href="#i-sun"/></svg>
             <span class="season-title">
@@ -1522,6 +1526,20 @@
     });
   });
 
+  /* ---------- Saison-Akkordeon: immer nur eins gleichzeitig offen, egal ob per Klick
+     auf die Zusammenfassung oder per Saison-Kachel geöffnet — das `name`-Attribut regelt
+     das nativ, dieser Handler sorgt zusätzlich dafür, dass es auch beim programmatischen
+     Öffnen (Klick auf die Ferienzeiten-Kachel oben) einheitlich funktioniert. ---------- */
+  var allSeasonBlocks = document.querySelectorAll('.season-block');
+  allSeasonBlocks.forEach(function(block){
+    block.addEventListener('toggle', function(){
+      if (!block.open) return;
+      allSeasonBlocks.forEach(function(other){
+        if (other !== block) other.open = false;
+      });
+    });
+  });
+
   /* ---------- Saison-Kacheln öffnen den passenden Akkordeon-Block ---------- */
   document.querySelectorAll('.js-season-link').forEach(function(link){
     link.addEventListener('click', function(e){
@@ -1589,19 +1607,33 @@
   // .reveal-Geschwistern im selben Elternelement — dadurch erscheinen Karten/Zeilen
   // einer Gruppe nacheinander statt alle gleichzeitig als ein Block. Auf 6 Schritte
   // gedeckelt, damit auch eine 7er-Liste nicht ewig braucht, bis alles sichtbar ist.
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+  //
+  // Reines Polish-Feature — darf den Inhalt nie dauerhaft unsichtbar lassen. Deshalb:
+  // (1) alles läuft in try/catch, falls IntersectionObserver mal nicht verfügbar ist,
+  // (2) ein harter Sicherheits-Timeout zeigt nach 1,2s garantiert alles, was aus
+  // irgendeinem Grund (z. B. ein Browser, der für bereits sichtbare Elemente beim
+  // Beobachtungsstart nicht zuverlässig auslöst) noch nicht erschienen ist.
+  function revealAll(){
+    document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ el.classList.add('in'); });
+  }
+  try {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, {threshold:.1});
+    document.querySelectorAll('.reveal').forEach(function(el){
+      var siblings = Array.prototype.filter.call(el.parentElement.children, function(c){
+        return c.classList.contains('reveal');
+      });
+      var idx = siblings.indexOf(el);
+      el.style.transitionDelay = (Math.min(idx, 6) * 55) + 'ms';
+      io.observe(el);
     });
-  }, {threshold:.1});
-  document.querySelectorAll('.reveal').forEach(function(el){
-    var siblings = Array.prototype.filter.call(el.parentElement.children, function(c){
-      return c.classList.contains('reveal');
-    });
-    var idx = siblings.indexOf(el);
-    el.style.transitionDelay = (Math.min(idx, 6) * 55) + 'ms';
-    io.observe(el);
-  });
+  } catch (err) {
+    revealAll();
+  }
+  setTimeout(revealAll, 1200);
 
   /* ---------- Live-Countdown zur nächsten Ferienzeit ----------
      Echte, aus dem Kalenderdatum berechnete Zahl — kein Fantasiewert. */
