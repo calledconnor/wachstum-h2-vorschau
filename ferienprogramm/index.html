@@ -72,6 +72,13 @@
   @media (min-width:768px){ :root{ --container-pad:32px; } }
 
   *,*::before,*::after{box-sizing:border-box;}
+  .skip-link{
+    position:absolute; top:-100px; left:var(--s3); z-index:100;
+    background:var(--copper); color:#fff; padding:var(--s2) var(--s4);
+    border-radius:var(--radius-sm); font-weight:600;
+    transition:top .2s ease;
+  }
+  .skip-link:focus{ top:var(--s3); }
   html{scroll-behavior:smooth;}
   html,body{ overflow-x:clip; }
   @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;} }
@@ -196,13 +203,25 @@
     .hero-bg img{ animation:none; opacity:0; transform:none; }
     .hero-bg img:first-child{ opacity:1; }
   }
-  /* Unter 768px nur noch 2 Fotos statt 4 — ruhigerer, schnellerer Wechsel auf kleinem Screen,
-     gleiche Keyframe-Kurve (nutzt %-Werte), nur die Zykluslänge wird halbiert. */
+  /* Unter 768px nur noch 2 Fotos statt 4 (spart Ladezeit auf kleinen Screens). Die
+     4-Bilder-Kurve oben ist für einen 25%-Versatz gebaut (8s Versatz bei 32s Dauer,
+     Bild bleibt 30% des Zyklus lang sichtbar) — bei nur 2 Bildern mit 50%-Versatz
+     reicht dasselbe 30%-Sichtfenster nicht mehr aus: 2×30% < 100%, es entsteht eine
+     echte Lücke, in der kein Bild sichtbar ist und der reine Orange/Dunkel-Verlauf
+     durchscheint. Eigene Kurve mit 54%-Sichtfenster schließt die Lücke rechnerisch
+     (2×54% > 100%, garantiert Überlappung statt Leerraum). */
   @media (max-width:767px){
     .hero-bg img:nth-child(3), .hero-bg img:nth-child(4){ display:none; }
-    .hero-bg img{ animation-duration:16s; }
+    .hero-bg img{ animation-name:heroFrameMobile; animation-duration:16s; }
     .hero-bg img:nth-child(1){ animation-delay:0s; }
     .hero-bg img:nth-child(2){ animation-delay:-8s; }
+  }
+  @keyframes heroFrameMobile{
+    0%   { opacity:0; transform:scale(1.02); }
+    8%   { opacity:1; }
+    46%  { opacity:1; transform:scale(1.08); }
+    54%  { opacity:0; }
+    100% { opacity:0; transform:scale(1.08); }
   }
 
   .hero-inner{ position:relative; z-index:1; display:grid; gap:var(--s3); max-width:640px; padding-bottom:var(--s6); }
@@ -764,6 +783,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
 <!-- ============================================================
      ICON-SPRITE — eigenes, filigranes Set (Lucide/Phosphor-Stil)
      ============================================================ -->
@@ -791,7 +811,7 @@
 <header class="hero" id="top">
   <div class="hero-bg" aria-hidden="true">
     <img src="fotos/kinder-superhelden-gruppe.jpg" alt="" fetchpriority="high">
-    <img src="fotos/selbstschutz-training.jpg" alt="" loading="lazy">
+    <img src="fotos/selbstschutz-training.jpg" alt="" fetchpriority="low">
     <img src="fotos/wh2-training-collage.jpg" alt="" loading="lazy">
     <img src="fotos/kind-thumbs-up.jpg" alt="" loading="lazy">
   </div>
@@ -836,7 +856,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
 
   <!-- ============================================================ -->
   <!-- 2. FERIEN-AUSWAHL -->
