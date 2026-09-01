@@ -259,18 +259,32 @@
   .audience-pick .label{ font-weight:600; color:rgba(245,245,244,.6); font-size:.9rem; }
   .audience-row{ display:flex; flex-wrap:wrap; gap:var(--s2); }
   @media (max-width:640px){ .audience-row{ flex-wrap:nowrap; } .audience-btn{ flex:1; min-width:0; } }
+  /* ---- Große Line-Art-Illustration statt kleinem Icon: gibt den beiden
+     Wegweiser-Kacheln Charakter, Text bleibt unten links verankert. ---- */
   .audience-btn{
-    display:flex; align-items:center; gap:var(--s2);
-    padding:var(--s2) var(--s3);
+    position:relative; overflow:hidden;
+    display:flex; flex-direction:column; justify-content:flex-end; gap:2px;
+    min-height:132px;
+    padding:var(--s3);
     border:1px solid var(--line-dark);
     color:var(--paper);
     font-weight:600;
     text-align:left;
-    transition:border-color .2s ease, transform .3s var(--ease), gap .2s ease;
+    transition:border-color .2s ease, transform .3s var(--ease);
   }
-  .audience-btn:hover{ border-color:var(--copper-light); gap:calc(var(--s2) + 4px); }
-  .audience-btn .icon{ color:var(--copper-light); }
-  .audience-btn .tag{ font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,245,244,.5); display:block; margin-bottom:2px; }
+  .audience-btn:hover{ border-color:var(--copper-light); transform:translateY(-2px); }
+  .audience-btn strong{ font-weight:700; }
+  .audience-illustration{
+    position:absolute; top:-8px; right:-10px; z-index:0;
+    width:88px; height:88px;
+    stroke:var(--copper-light); stroke-width:1.3; fill:none;
+    stroke-linecap:round; stroke-linejoin:round;
+    opacity:.85;
+    transition:transform .35s var(--ease);
+  }
+  .audience-btn:hover .audience-illustration{ transform:scale(1.08) rotate(-3deg); }
+  .audience-btn .tag{ position:relative; z-index:1; font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,245,244,.6); display:block; }
+  .audience-btn strong{ position:relative; z-index:1; }
 
   /* ---------- Schwebendes Glas-Badge: ein echter, geprüfter Fakt statt eines
      Countdowns ohne echten Anmeldeschluss-Anker. Frosted-Glass-Effekt in den
@@ -875,6 +889,9 @@
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></symbol>
   <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5Z"/></symbol>
+  <!-- Karate/Yoga: Tabler Icons (tabler.io/icons), MIT-Lizenz, unverändert übernommen -->
+  <symbol id="i-karate" viewBox="0 0 24 24"><path d="M3 9l4.5 1l3 2.5"/><path d="M13 21v-8l3 -5.5"/><path d="M8 4.5l4 2l4 1l4 3.5l-2 3.5"/><path d="M15.007 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/></symbol>
+  <symbol id="i-yoga" viewBox="0 0 24 24"><path d="M4 20h4l1.5 -3"/><path d="M17 20l-1 -5h-5l1 -7"/><path d="M4 10l4 -1l4 -1l4 1.5l4 1.5"/><path d="M10.007 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/></symbol>
 </svg>
 
 <!-- ============================================================ -->
@@ -889,35 +906,31 @@
   </div>
   <div class="wrap hero-inner">
     <span class="eyebrow">WH² Akademie · Büdelsdorf</span>
-    <h1>Ferienprogramm <span class="accent">2026/27</span></h1>
-    <p class="slogan">Kampfkunst &amp; Bewegung für die ganze Familie.</p>
-
-    <div class="hero-badge reveal">
-      <svg class="icon"><use href="#i-check"/></svg>
-      <span><strong>Ringen &amp; Raufen</strong> schon terminiert · 19. &amp; 21.10.</span>
-    </div>
+    <h1>Ferienprogramm für Kinder, Jugendliche <span class="accent">&amp; Erwachsene</span></h1>
+    <p class="slogan">Kampfkunst, Selbstbehauptung und Bewegung in kleinen Gruppen bei erfahrenen Trainern.</p>
 
     <div class="hero-ctas">
       <a href="#ferienauswahl" class="btn btn-primary" data-track="cta_hero_main">Ferienprogramm auswählen <svg class="icon"><use href="#i-arrow"/></svg></a>
       <a href="#anmeldung" class="hero-cta-secondary">Direkt zur Anmeldung</a>
     </div>
 
+    <div class="hero-badge reveal">
+      <svg class="icon"><use href="#i-check"/></svg>
+      <span><strong>Ringen &amp; Raufen</strong> schon terminiert · 19. &amp; 21.10.</span>
+    </div>
+
     <div class="audience-pick">
       <span class="label">Was suchst du?</span>
       <div class="audience-row">
         <a href="#kinder" class="audience-btn" data-track="audience_kinder">
-          <svg class="icon icon-lg"><use href="#i-users"/></svg>
-          <span>
-            <span class="tag">Ferien-Angebote</span>
-            Für Kinder &amp; Jugendliche
-          </span>
+          <svg class="audience-illustration" aria-hidden="true"><use href="#i-karate"/></svg>
+          <span class="tag">Ferien-Angebote</span>
+          <strong>Für Kinder &amp; Jugendliche</strong>
         </a>
         <a href="#erwachsene" class="audience-btn" data-track="audience_erwachsene">
-          <svg class="icon icon-lg"><use href="#i-star"/></svg>
-          <span>
-            <span class="tag">Kurse &amp; Workshops</span>
-            Für Eltern &amp; Erwachsene
-          </span>
+          <svg class="audience-illustration" aria-hidden="true"><use href="#i-yoga"/></svg>
+          <span class="tag">Kurse &amp; Workshops</span>
+          <strong>Für Eltern &amp; Erwachsene</strong>
         </a>
       </div>
     </div>
